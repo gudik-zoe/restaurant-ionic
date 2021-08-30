@@ -11,6 +11,10 @@ export class AppetizersService {
   constructor(private http: HttpClient) {}
 
   public getAppetizers(): Observable<any> {
-    return this.http.get(this.rootUrl + 'item?category=Appetizer');
+    try {
+      return this.http.get(this.rootUrl + 'item?category=Appetizer');
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

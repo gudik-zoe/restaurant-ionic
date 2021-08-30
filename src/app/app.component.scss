@@ -1,0 +1,19 @@
+ion-toolbar {
+  --background: #fff
+    url("../assets/wooden-spoon-condiments-background-wallpaper-preview.jpg")
+    no-repeat center center / cover;
+}
+ion-menu-button {
+  font-size: 40px !important;
+  font-weight: bolder;
+  color: white;
+}
+
+ion-content {
+  background: red;
+}
+
+ion-menu {
+  // position: absolute !important;
+  margin-top: 45px !important;
+}

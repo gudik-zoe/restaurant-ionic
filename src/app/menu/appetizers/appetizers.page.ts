@@ -8,10 +8,11 @@ import { AppetizersService } from './appetizers.service';
 })
 export class AppetizersPage implements OnInit {
   constructor(private appeitzersService: AppetizersService) {}
-
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  items: any[];
   ngOnInit() {
     this.appeitzersService.getAppetizers().subscribe((data) => {
-      console.log(data);
+      this.items = data.result;
     });
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DessertsService } from './desserts.service';
 
 @Component({
   selector: 'app-desserts',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./desserts.page.scss'],
 })
 export class DessertsPage implements OnInit {
-
-  constructor() { }
+  constructor(private dessertsService: DessertsService) {}
 
   ngOnInit() {
+    this.dessertsService.getDesserts().subscribe((data) => {
+      console.log(data);
+    });
   }
-
 }
