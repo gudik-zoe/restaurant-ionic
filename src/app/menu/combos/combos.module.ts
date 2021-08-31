@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { CombosPageRoutingModule } from './combos-routing.module';
 
 import { CombosPage } from './combos.page';
+import { ItemModule } from 'src/app/item/item.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CombosPageRoutingModule
+    CombosPageRoutingModule,
+    ItemModule,
   ],
-  declarations: [CombosPage]
+  declarations: [CombosPage],
 })
 export class CombosPageModule {}

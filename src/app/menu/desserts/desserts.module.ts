@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { DessertsPageRoutingModule } from './desserts-routing.module';
 
 import { DessertsPage } from './desserts.page';
+import { ItemModule } from 'src/app/item/item.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DessertsPageRoutingModule
+    DessertsPageRoutingModule,
+    ItemModule,
   ],
-  declarations: [DessertsPage]
+  declarations: [DessertsPage],
 })
 export class DessertsPageModule {}

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DrinksService } from './drinks.service';
 
 @Component({
   selector: 'app-drinks',
@@ -7,11 +6,10 @@ import { DrinksService } from './drinks.service';
   styleUrls: ['./drinks.page.scss'],
 })
 export class DrinksPage implements OnInit {
-  constructor(private drinkService: DrinksService) {}
+
+  constructor() { }
 
   ngOnInit() {
-    this.drinkService.getDrinks().subscribe((data) => {
-      console.log(data);
-    });
   }
+
 }

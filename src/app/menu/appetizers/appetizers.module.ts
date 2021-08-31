@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { AppetizersPageRoutingModule } from './appetizers-routing.module';
 
 import { AppetizersPage } from './appetizers.page';
+import { ItemModule } from 'src/app/item/item.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AppetizersPageRoutingModule
+    AppetizersPageRoutingModule,
+    ItemModule,
   ],
-  declarations: [AppetizersPage]
+  declarations: [AppetizersPage],
 })
 export class AppetizersPageModule {}

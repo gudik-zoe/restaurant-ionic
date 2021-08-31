@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AppetizersService } from './appetizers.service';
 
 @Component({
   selector: 'app-appetizers',
@@ -7,12 +6,10 @@ import { AppetizersService } from './appetizers.service';
   styleUrls: ['./appetizers.page.scss'],
 })
 export class AppetizersPage implements OnInit {
-  constructor(private appeitzersService: AppetizersService) {}
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  items: any[];
+
+  constructor() { }
+
   ngOnInit() {
-    this.appeitzersService.getAppetizers().subscribe((data) => {
-      this.items = data.result;
-    });
   }
+
 }

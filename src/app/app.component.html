@@ -6,33 +6,28 @@
     <!-- <ion-title>appetizers</ion-title> -->
   </ion-toolbar>
 </ion-header>
-<ion-app style="background-color: red;">
+<ion-app>
   <ion-menu side="start">
-    <!-- <ion-header>
-      <ion-toolbar color="primary">
-        <ion-title>Start Menu</ion-title>
-      </ion-toolbar>
-    </ion-header> -->
     <ion-content>
-      <ion-list>
+      <ion-list style="margin-top: 50px;">
         <ion-menu-toggle>
           <ion-item lines="none" routerLink="/menu/appetizers" button>
             <ion-icon name="business" slot="start">
             </ion-icon>
-            <ion-label>Appetizers</ion-label>
+            <ion-label class="label">Appetizers</ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
           <ion-item lines="none" routerLink="/menu/combos" button>
             <ion-icon name="fast-food-outline" slot="start"></ion-icon>
-            <ion-label>Combos</ion-label>
+            <ion-label class="label">Combos</ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
 
           <ion-item lines="none" routerLink="/menu/drinks" button>
             <ion-icon name="beer-outline" slot="start"></ion-icon>
-            <ion-label>Drinks</ion-label>
+            <ion-label class="label">Drinks</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
@@ -40,7 +35,7 @@
           <ion-item lines="none" routerLink="/menu/desserts" button>
             <ion-icon name="exit" slot="start">
             </ion-icon>
-            <ion-label>Desserts</ion-label>
+            <ion-label class="label">Desserts</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
