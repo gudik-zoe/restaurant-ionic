@@ -7,25 +7,7 @@
 
 <ion-grid>
   <ion-row>
-    <ion-col *ngFor="let item of items" size="12" size-sm="8" offset-sm="1" text-center style="margin-top: 10px;">
-      <!-- <ion-card>
-        <ion-card-header>
-          <ion-card-title>
-            <ion-thumbnail slot="start">
-              <ion-img [src]="item.imageUrl"></ion-img>
-            </ion-thumbnail>
-            {{item.title}}
-          </ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-
-          <!-- <ion-button fill="" color="danger">
-            Details</ion-button>
-        </ion-card-content>
-        <ion-card-subtitle>
-          <ion-label slot="end" color="red">price:{{item.price | currency}} </ion-label>
-        </ion-card-subtitle>
-      </ion-card> -->
+    <ion-col *ngFor="let item of items" size="12" size-sm="8" text-center style="margin-top: 10px;">
       <ion-card>
         <ion-card-header>
           <ion-card-subtitle>
@@ -38,18 +20,15 @@
           Keep close to Nature's heart... and break clear away, once in awhile,
           and climb a mountain or
         </ion-card-content>
-        <ion-button color="danger" size="small">
+        <ion-button color="danger" size="small" class="button" (click)="addToCart(item)">
           <ion-icon name="cart-outline"></ion-icon> Add To Cart
         </ion-button>
       </ion-card>
 
-      <ion-card>
+      <!-- <ion-card>
         <ion-item>
           <ion-img [src]="item.imageUrl" style="width: 80px; height: 80px;"></ion-img>
           <p style="margin-left: 5px;">{{item.title}}</p>
-          <!--
-          <ion-label slot="end">ion-item in a card, icon left, button right</ion-label> -->
-
         </ion-item>
         <ion-card-header>
           the title
@@ -60,7 +39,7 @@
           within an ion-card-content element.
           <ion-button slot="end" size="xsmall" color="danger">Details</ion-button>
         </ion-card-content>
-      </ion-card>
+      </ion-card> -->
 
 
     </ion-col>

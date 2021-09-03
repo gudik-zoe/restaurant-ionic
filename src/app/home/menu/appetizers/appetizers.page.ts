@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-appetizers',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appetizers.page.scss'],
 })
 export class AppetizersPage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private router: Router) {}
+  navigate() {
+    console.log('hello appetizers');
+    // this.router.navigate(['/menu']);
   }
-
+  ngOnInit() {}
 }

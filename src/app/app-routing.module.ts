@@ -9,13 +9,23 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'menu',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
+  // {
+  //   path: 'menu',
+  //   loadChildren: () =>
+  //     import('./menu/menu.module').then((m) => m.MenuPageModule),
+  // },
+
+  // {
+  //   path: 'tabs',
+  //   loadChildren: () => import('./menu/tabs/tabs.module').then( m => m.TabsPageModule)
+  // },
   {
-    path: 'menu',
+    path: 'card',
     loadChildren: () =>
-      import('./menu/menu.module').then((m) => m.MenuPageModule),
+      import('./card/card.module').then((m) => m.CardPageModule),
   },
 ];
 
