@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CombosPageRoutingModule } from './combos-routing.module';
 
 import { CombosPage } from './combos.page';
-import { ItemModule } from 'src/app/item/item.module';
+import { SharedComponentsModule } from 'src/app/sharedComponents/shared-components.module';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { ItemModule } from 'src/app/item/item.module';
     FormsModule,
     IonicModule,
     CombosPageRoutingModule,
-    ItemModule,
+    SharedComponentsModule,
   ],
   declarations: [CombosPage],
 })

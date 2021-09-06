@@ -34,6 +34,9 @@
 
   </ion-content>
   <ion-content *ngIf="!card">
-    <h3>please sign in to be able to see your card</h3>
-
+    <div class="center">
+      <ion-label>please sign in to be able to see your card</ion-label>
+    </div>
+    <ion-button color="danger" expand="block" type="button" routerLink="../login">
+      go to Login</ion-button>
   </ion-content>

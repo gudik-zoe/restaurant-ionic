@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Item } from 'src/app/models/item';
 import { ResultList } from 'src/app/models/resultList';
-import { ErrorHandlerService } from '../utility/error-handler.service';
+import { ErrorHandlerService } from '../../utility/error-handler.service';
 import { ItemsService } from './items.service';
 
 @Component({

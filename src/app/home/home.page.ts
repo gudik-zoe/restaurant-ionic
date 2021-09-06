@@ -45,7 +45,7 @@ export class HomePage implements OnInit, OnDestroy {
     console.log('entered home');
   }
 
-  ngOnInit() {
+  ngOnInitMethods() {
     this.getCardItemsNumber();
     this.cardService.getMyCardItemsNumber().subscribe(
       (cardItemsNumber: number) => {
@@ -55,5 +55,11 @@ export class HomePage implements OnInit, OnDestroy {
         console.log(error);
       }
     );
+  }
+
+  ngOnInit() {
+    if (this.authService.isAuthenticated()) {
+      this.ngOnInitMethods();
+    }
   }
 }

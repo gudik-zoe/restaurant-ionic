@@ -1,4 +1,4 @@
-<ion-header style="margin-top: 80px;">
+<!-- <ion-header style="margin-top: 80px;">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home/menu" text="" color="dark">
@@ -6,7 +6,8 @@
     </ion-buttons>
     <ion-title>Drinks</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
+<app-header [title]="'Drinks'" [defaultHref]="'/home/menu'"></app-header>
 
 <ion-content>
   <app-item [category]="'Drink'"></app-item>
