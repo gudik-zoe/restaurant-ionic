@@ -1,42 +1,40 @@
-<ng-container>
-  <ion-header style="margin-top: 80px;">
+<app-header [title]="'card'" [defaultHref]="'home/card'" [back]="false">
+  <ion-label slot="end" *ngIf="card">{{card.total | currency}} </ion-label>
+</app-header>
+<!-- <ion-header style="margin-top: 80px;">
     <ion-toolbar>
-      <!-- <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" text="" color="dark">
-      </ion-back-button>
-    </ion-buttons> -->
       <ion-title>Card</ion-title>
       <ion-label slot="end" *ngIf="card">{{card.total | currency}} </ion-label>
     </ion-toolbar>
-  </ion-header>
-  <ion-content *ngIf="card">
-    <ion-grid>
-      <ion-row>
-        <ion-col *ngFor="let item of card.items" size="12">
-          <ion-item>
-            <ion-thumbnail slot="start">
-              <ion-img></ion-img>
-            </ion-thumbnail>
-            <ion-label>
-              <h2>{{item.itemId}}</h2>
-            </ion-label>
-            <ion-label slot="end">
-              <ion-button size="small" color="danger">-</ion-button>
-              {{item.quantity}}
-              <ion-button size="small" color="danger">+</ion-button>
-            </ion-label>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  </ion-header> -->
+<ion-content *ngIf="card">
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let item of card.items" size="12">
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <ion-img></ion-img>
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{item.itemId}}</h2>
+          </ion-label>
+          <ion-label slot="end">
+            <ion-button size="small" color="danger">-</ion-button>
+            {{item.quantity}}
+            <ion-button size="small" color="danger">+</ion-button>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 
 
-  </ion-content>
-  <ion-content *ngIf="!card">
-    <div class="center">
-      <ion-label>please sign in to be able to see your card</ion-label>
-    </div>
-    <ion-button color="danger" expand="block" type="button" routerLink="../login">
-      go to Login</ion-button>
-  </ion-content>
+</ion-content>
+<ion-content *ngIf="!card">
+  <div class="center">
+    <ion-label>please sign in to be able to see your card</ion-label>
+  </div>
+  <ion-button color="danger" expand="block" type="button" routerLink="../login">
+    go to Login</ion-button>
+</ion-content>

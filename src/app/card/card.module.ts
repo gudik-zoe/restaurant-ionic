@@ -7,14 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { CardPageRoutingModule } from './card-routing.module';
 
 import { CardPage } from './card.page';
+import { AppetizersPageModule } from '../home/menu/appetizers/appetizers.module';
+import { SharedComponentsModule } from '../sharedComponents/shared-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CardPageRoutingModule
+    CardPageRoutingModule,
+    SharedComponentsModule,
   ],
-  declarations: [CardPage]
+  declarations: [CardPage],
 })
 export class CardPageModule {}

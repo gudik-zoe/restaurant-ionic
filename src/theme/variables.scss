@@ -5,7 +5,8 @@
 :root {
   /** primary **/
   --ion-background-color: whitesmoke;
-  --ion-color-primary: #3880ff;
+  // --ion-color-primary: #3880ff;
+  --ion-color-primary: linear-gradient(145deg, #0d47a1, #42a5f5);
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;

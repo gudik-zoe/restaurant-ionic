@@ -7,13 +7,11 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Input() title: string = '';
-  @Input() defaultHref: string = '';
+  @Input() title: string;
+  @Input() defaultHref: string;
+  @Input() back: boolean;
+
   constructor() {}
-  stamp() {
-    console.log(this.defaultHref + ' ' + this.title);
-  }
-  ngOnInit() {
-    console.log(this.title + ' ' + this.defaultHref);
-  }
+
+  ngOnInit() {}
 }

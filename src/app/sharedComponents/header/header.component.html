@@ -1,7 +1,8 @@
-<ion-header *ngIf="title" class="header">
-  <ion-toolbar>
+<ion-header *ngIf="title">
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button *ngIf="defaultHref" [defaultHref]="defaultHref" color="dark" size="small">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button *ngIf="defaultHref && back" [defaultHref]="defaultHref" color="dark" size="small">
       </ion-back-button>
     </ion-buttons>
     <ion-title style="text-align: center; margin-right: 20px;" size="large">{{title}}</ion-title>
