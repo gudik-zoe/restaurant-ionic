@@ -14,8 +14,9 @@ import { environment } from 'src/environments/environment';
 export class ItemsService {
   constructor(private http: HttpClient) {}
   rootUrl: string = environment.rootUrl;
-  items: Item[];
-  public getItemsByCategory(category: string) {
+  items: Item[] = [];
+  public getItemsByCategory(category: string): Promise<Item[]> {
+    // console.log('passed from here');
     return new Promise<Item[]>((resolve, reject) => {
       return this.http
         .get(this.rootUrl + `item?category=${category}`)
@@ -38,5 +39,25 @@ export class ItemsService {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  public getItemById(itemId: string): Promise<Item> {
+    let theRequestedItem;
+    return new Promise<Item>((resolve, reject) => {
+      theRequestedItem = this.items.find((item: Item) => item._id === itemId);
+      if (theRequestedItem) {
+        console.log('was already in memory');
+        resolve(theRequestedItem);
+      } else {
+        return this.http.get<Item>(this.rootUrl + `item/${itemId}`).subscribe(
+          (item: Item) => {
+            console.log('did the chiamata');
+            this.items.push(item);
+            resolve(item);
+          },
+          (err) => reject(err)
+        );
+      }
+    });
   }
 }

@@ -1,4 +1,5 @@
 import { CardItem } from './cardItem';
+import { Item } from './item';
 
 export class Card {
   public _id?: string;

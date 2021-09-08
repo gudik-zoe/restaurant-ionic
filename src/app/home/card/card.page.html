@@ -1,6 +1,6 @@
 <app-header [title]="'card'" [defaultHref]="'home/card'" [back]="false">
-  <ion-label slot="end" *ngIf="card">{{card.total | currency}} </ion-label>
 </app-header>
+<ion-label slot="end" *ngIf="card">{{card.total | currency}} </ion-label>
 <!-- <ion-header style="margin-top: 80px;">
     <ion-toolbar>
       <ion-title>Card</ion-title>
@@ -13,10 +13,11 @@
       <ion-col *ngFor="let item of card.items" size="12">
         <ion-item>
           <ion-thumbnail slot="start">
-            <ion-img></ion-img>
+            <ion-img [src]="item.itemData.imageUrl"></ion-img>
           </ion-thumbnail>
           <ion-label>
-            <h2>{{item.itemId}}</h2>
+            {{item.itemData.title}}
+            <!-- <h2>{{item.itemId}}</h2> -->
           </ion-label>
           <ion-label slot="end">
             <ion-button size="small" color="danger">-</ion-button>

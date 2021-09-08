@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { Item } from 'src/app/models/item';
 import { ResultList } from 'src/app/models/resultList';
 import { ErrorHandlerService } from '../../utility/error-handler.service';
@@ -17,7 +17,8 @@ export class ItemComponent implements OnInit {
     private itemsService: ItemsService,
     public alertController: AlertController,
     private errorHandler: ErrorHandlerService,
-    private router: Router
+    private router: Router,
+    public toastController: ToastController
   ) {}
   @Input() category: string;
   items: Item[];
@@ -26,7 +27,15 @@ export class ItemComponent implements OnInit {
     this.itemsService.addItemToCard(item).subscribe(
       (data: any) => {
         if (data) {
-          console.log('item has been added successfully to the card');
+          this.toastController
+            .create({
+              message: `item has been added succesfully`,
+              duration: 2000,
+              position: 'top',
+            })
+            .then((alertEl) => {
+              alertEl.present();
+            });
         }
       },
       (err) => {
