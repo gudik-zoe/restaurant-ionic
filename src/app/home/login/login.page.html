@@ -5,7 +5,7 @@
 </ion-header> -->
 <app-header [title]="'login'" [defaultHref]="'home/card'" [back]="false"></app-header>
 <ion-content>
-  <ion-card>
+  <ion-card style="background: white;">
     <ion-card-content>
       <form #myForm="ngForm">
         <ion-grid>
@@ -14,7 +14,8 @@
               <ion-list>
                 <ion-item>
                   <ion-label position="floating">E-mail</ion-label>
-                  <ion-input type="email" ngModel name="email" required email #emailErrMessage="ngModel"></ion-input>
+                  <ion-input type="email" ngModel name="email" required email #emailErrMessage="ngModel"
+                    placeholder="email@email.com"></ion-input>
                 </ion-item>
                 <ion-item lines="none" *ngIf="!emailErrMessage.valid && emailErrMessage.touched">
                   <p>please enter a valid email adress</p>
