@@ -2,6 +2,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Card } from '../models/card';
+import { ErrorHandlerService } from '../utility/error-handler.service';
 import { CardService } from './card/card.service';
 import { AuthService } from './login/auth.service';
 
@@ -15,7 +16,8 @@ export class HomePage implements OnInit, OnDestroy {
   userSignedIn: Subscription;
   constructor(
     private cardService: CardService,
-    public authService: AuthService
+    public authService: AuthService,
+    private errorHandler: ErrorHandlerService
   ) {}
   ngOnDestroy(): void {
     this.userSignedIn.unsubscribe();
@@ -46,7 +48,6 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ngOnInitMethods() {
-    this.getCardItemsNumber();
     this.cardService.getMyCardItemsNumber().subscribe(
       (cardItemsNumber: number) => {
         this.cardLength = cardItemsNumber;
@@ -58,6 +59,7 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.getCardItemsNumber();
     if (this.authService.isAuthenticated()) {
       this.ngOnInitMethods();
     }

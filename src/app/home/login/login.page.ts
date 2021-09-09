@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { ErrorHandlerService } from 'src/app/utility/error-handler.service';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class LoginPage implements OnInit {
   constructor(
     private loadingCtrl: LoadingController,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private errorHandler: ErrorHandlerService
   ) {}
 
   isLoggedIn: boolean = true;
@@ -58,7 +60,7 @@ export class LoginPage implements OnInit {
             },
             (error) => {
               loadingEl.dismiss();
-              console.log(error.error);
+              this.errorHandler.showError(error, 'home/login');
             }
           );
         //

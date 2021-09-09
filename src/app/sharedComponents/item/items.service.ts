@@ -46,12 +46,10 @@ export class ItemsService {
     return new Promise<Item>((resolve, reject) => {
       theRequestedItem = this.items.find((item: Item) => item._id === itemId);
       if (theRequestedItem) {
-        console.log('was already in memory');
         resolve(theRequestedItem);
       } else {
         return this.http.get<Item>(this.rootUrl + `item/${itemId}`).subscribe(
           (item: Item) => {
-            console.log('did the chiamata');
             this.items.push(item);
             resolve(item);
           },

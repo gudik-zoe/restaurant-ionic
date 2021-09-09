@@ -4,6 +4,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Card } from 'src/app/models/card';
+import { CardItem } from 'src/app/models/cardItem';
 import { ItemsService } from 'src/app/sharedComponents/item/items.service';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../login/auth.service';
@@ -38,5 +39,27 @@ export class CardService {
 
   getMyCardItemsNumber() {
     return this.http.get(this.rootUrl + 'card/cartLength');
+  }
+
+  deleteItemFromCard(item: CardItem): Promise<Card> {
+    return new Promise<Card>((resolve, reject) => {
+      return this.http.delete(this.rootUrl + `card/${item.itemId}`).subscribe(
+        (data: Card) => {
+          resolve(data);
+        },
+        (err) => reject(err)
+      );
+    });
+  }
+
+  modifyCard(card: Card): Promise<Card> {
+    return new Promise<Card>((resolve, reject) => {
+      return this.http.put(this.rootUrl + 'card', card).subscribe(
+        (theModifiedCard: Card) => {
+          resolve(theModifiedCard);
+        },
+        (err) => reject(err)
+      );
+    });
   }
 }
