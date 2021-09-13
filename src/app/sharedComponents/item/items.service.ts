@@ -48,6 +48,7 @@ export class ItemsService {
       if (theRequestedItem) {
         resolve(theRequestedItem);
       } else {
+        console.log('doing the chiamta');
         return this.http.get<Item>(this.rootUrl + `item/${itemId}`).subscribe(
           (item: Item) => {
             this.items.push(item);

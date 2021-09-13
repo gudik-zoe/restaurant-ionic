@@ -55,7 +55,10 @@ export class CardService {
   modifyCard(card: Card): Promise<Card> {
     return new Promise<Card>((resolve, reject) => {
       return this.http.put(this.rootUrl + 'card', card).subscribe(
-        (theModifiedCard: Card) => {
+        async (theModifiedCard: Card) => {
+          for (let item of theModifiedCard.items) {
+            item.itemData = await this.itemsService.getItemById(item.itemId);
+          }
           resolve(theModifiedCard);
         },
         (err) => reject(err)

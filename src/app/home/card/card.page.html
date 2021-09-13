@@ -1,34 +1,28 @@
 <app-header [title]="'card'" [defaultHref]="'home/card'" [back]="false">
 </app-header>
-<ion-label slot="end" *ngIf="card">{{card.total | currency}} </ion-label>
+
 <!-- <ion-header style="margin-top: 80px;">
     <ion-toolbar>
       <ion-title>Card</ion-title>
       <ion-label slot="end" *ngIf="card">{{card.total | currency}} </ion-label>
     </ion-toolbar>
   </ion-header> -->
-<ion-content *ngIf="card">
+<ion-content *ngIf="card" color="secondary">
   <ion-grid>
     <ion-row>
       <ion-col>
         <ion-item-sliding *ngFor="let item of card.items" size="12" #slidingBooking>
-          <ion-item>
+          <ion-item color="warning" style="margin-top: 10px;border-radius: 8px;">
             <ion-thumbnail slot="start">
               <ion-img [src]="item.itemData.imageUrl"></ion-img>
             </ion-thumbnail>
-            <!-- <ion-fab-button size="small" color="danger" slot="end">
-            <ion-icon name="trash-outline" size="small" style="font-size: x-small;"></ion-icon>
-          </ion-fab-button> -->
-            <ion-label>
-              {{item.itemData.title}}
-              <!-- <h2>{{item.itemId}}</h2> -->
-            </ion-label>
+
+            {{item.itemData.title}}
+
             <ion-label slot="end">
-              <ion-button size="small" color="secondary" (click)="minus(item)">-</ion-button>
+              <ion-button size="small" color="danger" (click)="minus(item)">-</ion-button>
               {{item.quantity}}
               <ion-button size="small" color="warning" (click)="plus(item)">+</ion-button>
-
-
             </ion-label>
           </ion-item>
           <ion-item-options>
@@ -37,6 +31,13 @@
             </ion-item-option>
           </ion-item-options>
         </ion-item-sliding>
+        <ion-item class="total" color="secondary">
+          <ion-label slot="start" *ngIf="card" color="secondary" class="label">Total </ion-label>
+          <ion-label slot="end" *ngIf="card" color="secondary" class="label2">{{card.total | currency}} </ion-label>
+        </ion-item>
+        <ion-button color="danger" expand="block" type="button" class="order-button">
+          <ion-label> Confirm Order</ion-label>
+        </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -48,7 +48,7 @@ export class CardPage implements OnInit {
   }
 
   ionViewWillLeave() {
-    if (this.total !== this.card.total) {
+    if (this.card && this.total !== this.card.total && this.card.total !== 0) {
       this.alertCtrl
         .create({
           message: 'sure you want to leave without saving the changes u made',
@@ -117,6 +117,9 @@ export class CardPage implements OnInit {
           (theItem: CardItem) => theItem.itemId !== item.itemId
         );
         this.card.total -= item.quantity * item.itemData.price;
+        if (this.card.total < 0) {
+          this.card.total = 0;
+        }
       }
     } catch (err) {
       this.errorHandler.showError(err, 'home/card');
