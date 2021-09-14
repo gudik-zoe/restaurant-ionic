@@ -18,7 +18,6 @@ export class AuthService {
 
   public login(email: string, password: string) {
     try {
-      console.log(email + ' ' + password);
       return this.http.post(this.rootUrl + 'auth/login', { email, password });
     } catch (err) {
       console.log(err);

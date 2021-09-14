@@ -78,6 +78,11 @@ export class CardPage implements OnInit {
       const modifiedCard = await this.cardService.modifyCard(this.card);
       if (modifiedCard) {
         this.card = modifiedCard;
+        let cardItemsNumber = 0;
+        for (let item of this.card.items) {
+          cardItemsNumber += item.quantity;
+        }
+        this.cardService.cardItemNumber.next(cardItemsNumber);
       }
     } catch (err) {
       this.errorHandler.showError(err);
@@ -120,6 +125,10 @@ export class CardPage implements OnInit {
         if (this.card.total < 0) {
           this.card.total = 0;
         }
+        this.cardService.addToCardSubject.next({
+          quantity: item.quantity,
+          add: false,
+        });
       }
     } catch (err) {
       this.errorHandler.showError(err, 'home/card');

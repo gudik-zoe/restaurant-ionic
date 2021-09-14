@@ -1,6 +1,7 @@
 /* eslint-disable prefer-const */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AddItemSubject } from '../models/addItemSubject';
 import { Card } from '../models/card';
 import { ErrorHandlerService } from '../utility/error-handler.service';
 import { CardService } from './card/card.service';
@@ -14,13 +15,17 @@ import { AuthService } from './login/auth.service';
 export class HomePage implements OnInit, OnDestroy {
   cardLength: number = null;
   userSignedIn: Subscription;
+  addToCardSubjectSubscription: Subscription;
+  cardItemsNumber: Subscription;
   constructor(
     private cardService: CardService,
     public authService: AuthService,
     private errorHandler: ErrorHandlerService
   ) {}
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.userSignedIn.unsubscribe();
+    this.addToCardSubjectSubscription.unsubscribe();
+    this.cardItemsNumber.unsubscribe();
   }
 
   getCardItemsNumber() {
@@ -32,7 +37,7 @@ export class HomePage implements OnInit, OnDestroy {
               this.cardLength = cardItemsNumber;
             },
             (error) => {
-              console.log(error);
+              this.errorHandler.showError(error);
               this.cardLength = null;
             }
           );
@@ -56,12 +61,28 @@ export class HomePage implements OnInit, OnDestroy {
         console.log(error);
       }
     );
+    this.addToCardSubjectSubscription =
+      this.cardService.addToCardSubject.subscribe((data: AddItemSubject) => {
+        if (data.add) {
+          this.cardLength++;
+        } else {
+          this.cardLength -= data.quantity;
+        }
+      });
+    this.cardItemsNumber = this.cardService.cardItemNumber.subscribe(
+      (data: number) => {
+        if (data) {
+          console.log(data);
+          this.cardLength = data;
+        }
+      }
+    );
   }
 
   ngOnInit() {
-    this.getCardItemsNumber();
-    if (this.authService.isAuthenticated()) {
-      this.ngOnInitMethods();
-    }
+    // this.getCardItemsNumber();
+    // if (this.authService.isAuthenticated()) {
+    this.ngOnInitMethods();
+    // }
   }
 }

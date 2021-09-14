@@ -3,6 +3,8 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { AddItemSubject } from 'src/app/models/addItemSubject';
 import { Card } from 'src/app/models/card';
 import { CardItem } from 'src/app/models/cardItem';
 import { ItemsService } from 'src/app/sharedComponents/item/items.service';
@@ -20,6 +22,8 @@ export class CardService {
   ) {}
   rootUrl: string = environment.rootUrl;
   myCard: Card;
+  addToCardSubject = new Subject<AddItemSubject>();
+  cardItemNumber = new Subject<number>();
   getMyCard() {
     return new Promise<Card>((resolve, reject) => {
       return this.http.get(this.rootUrl + 'card').subscribe(

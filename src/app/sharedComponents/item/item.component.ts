@@ -2,6 +2,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
+import { CardService } from 'src/app/home/card/card.service';
 import { Item } from 'src/app/models/item';
 import { ResultList } from 'src/app/models/resultList';
 import { ErrorHandlerService } from '../../utility/error-handler.service';
@@ -18,7 +19,8 @@ export class ItemComponent implements OnInit {
     public alertController: AlertController,
     private errorHandler: ErrorHandlerService,
     private router: Router,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private cardService: CardService
   ) {}
   @Input() category: string;
   items: Item[];
@@ -27,6 +29,7 @@ export class ItemComponent implements OnInit {
     this.itemsService.addItemToCard(item).subscribe(
       (data: any) => {
         if (data) {
+          this.cardService.addToCardSubject.next({ quantity: 1, add: true });
           this.toastController
             .create({
               message: `item has been added succesfully`,
@@ -39,7 +42,6 @@ export class ItemComponent implements OnInit {
         }
       },
       (err) => {
-        // this.showError(err.error);
         this.errorHandler.showError(err);
       }
     );
