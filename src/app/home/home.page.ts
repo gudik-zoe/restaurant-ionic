@@ -49,20 +49,32 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ionViewWillEnter() {
-    console.log('entered home');
+    this.ngOnInitMethods();
   }
 
   ngOnInitMethods() {
-    this.cardService.getMyCardItemsNumber().subscribe(
-      (cardItemsNumber: number) => {
-        this.cardLength = cardItemsNumber;
-      },
-      (error) => {
-        console.log(error);
+    this.userSignedIn = this.authService.userSignedIn.subscribe(
+      (data: boolean) => {
+        console.log('subscribing 1st subject');
+        if (data) {
+          this.cardService.getMyCardItemsNumber().subscribe(
+            (cardItemsNumber: number) => {
+              console.log(cardItemsNumber);
+              this.cardLength = cardItemsNumber;
+            },
+            (error) => {
+              this.errorHandler.showError(error);
+              this.cardLength = null;
+            }
+          );
+        } else {
+          this.cardLength = null;
+        }
       }
     );
     this.addToCardSubjectSubscription =
       this.cardService.addToCardSubject.subscribe((data: AddItemSubject) => {
+        console.log('subscribing 2nd subject');
         if (data.add) {
           this.cardLength++;
         } else {
@@ -71,6 +83,7 @@ export class HomePage implements OnInit, OnDestroy {
       });
     this.cardItemsNumber = this.cardService.cardItemNumber.subscribe(
       (data: number) => {
+        console.log('subscribing 3rd subject');
         if (data) {
           console.log(data);
           this.cardLength = data;
@@ -82,7 +95,9 @@ export class HomePage implements OnInit, OnDestroy {
   ngOnInit() {
     // this.getCardItemsNumber();
     // if (this.authService.isAuthenticated()) {
-    this.ngOnInitMethods();
+    if (this.authService.isAuthenticated()) {
+      this.ngOnInitMethods();
+    }
     // }
   }
 }
