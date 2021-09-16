@@ -1,12 +1,5 @@
 <app-header [title]="'card'" [defaultHref]="'home/card'" [back]="false">
 </app-header>
-
-<!-- <ion-header style="margin-top: 80px;">
-    <ion-toolbar>
-      <ion-title>Card</ion-title>
-      <ion-label slot="end" *ngIf="card">{{card.total | currency}} </ion-label>
-    </ion-toolbar>
-  </ion-header> -->
 <ion-content *ngIf="card" color="secondary">
   <ion-grid>
     <ion-row>
@@ -34,7 +27,7 @@
           <ion-label slot="start" *ngIf="card" color="secondary" class="label">Total </ion-label>
           <ion-label slot="end" *ngIf="card" color="secondary" class="label2">{{card.total | currency}} </ion-label>
         </ion-item>
-        <ion-button color="danger" expand="block" type="button" class="order-button">
+        <ion-button color="danger" expand="block" type="button" class="order-button" (click)="confirmOrder()">
           <ion-label> Confirm Order</ion-label>
         </ion-button>
       </ion-col>

@@ -1,12 +1,19 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Component, OnInit } from '@angular/core';
-import { AlertController, IonItemSliding } from '@ionic/angular';
+import { Router } from '@angular/router';
+import {
+  AlertController,
+  IonItemSliding,
+  LoadingController,
+} from '@ionic/angular';
 import { Button } from 'selenium-webdriver';
 import { Card } from 'src/app/models/card';
 import { CardItem } from 'src/app/models/cardItem';
+import { Order } from 'src/app/models/order';
 import { ErrorHandlerService } from 'src/app/utility/error-handler.service';
 import { AuthService } from '../login/auth.service';
+import { OrderService } from '../order/order.service';
 import { CardService } from './card.service';
 
 @Component({
@@ -19,10 +26,14 @@ export class CardPage implements OnInit {
     private cardService: CardService,
     private authService: AuthService,
     private alertCtrl: AlertController,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private orderService: OrderService,
+    private loadingCtrl: LoadingController,
+    private route: Router
   ) {}
   card: Card;
   total: number;
+  order: Order;
 
   private async getMyCard() {
     try {
@@ -87,6 +98,28 @@ export class CardPage implements OnInit {
     } catch (err) {
       this.errorHandler.showError(err);
     }
+  }
+
+  async confirmOrder() {
+    if (this.card.items.length === 0) {
+      return;
+    }
+    this.loadingCtrl
+      .create({ keyboardClose: true, message: 'adding order' })
+      .then(async (loadingEl) => {
+        loadingEl.present();
+        try {
+          this.order = await this.orderService.addOrder();
+          if (this.order) {
+            loadingEl.dismiss();
+            this.card = null;
+            this.route.navigate(['home/order']);
+          }
+        } catch (err) {
+          loadingEl.dismiss();
+          this.errorHandler.showError(err);
+        }
+      });
   }
 
   removeItem(item: CardItem, slidingEl: IonItemSliding) {

@@ -23,7 +23,17 @@ const routes: Routes = [
         loadChildren: () =>
           import('./login/login.module').then((m) => m.LoginPageModule),
       },
+      {
+        path: 'order',
+        loadChildren: () =>
+          import('./order/order.module').then((m) => m.OrderPageModule),
+      },
     ],
+  },
+  {
+    path: 'order',
+    loadChildren: () =>
+      import('./order/order.module').then((m) => m.OrderPageModule),
   },
 ];
 

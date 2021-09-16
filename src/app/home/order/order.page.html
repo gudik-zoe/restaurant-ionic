@@ -1,0 +1,36 @@
+<app-header [title]="'Orders'" [defaultHref]="'home/order'" [back]="false">
+</app-header>
+
+<ion-content *ngFor="let order of myOrders">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        Item
+      </ion-col>
+      <ion-col>
+        Price
+      </ion-col>
+      <ion-col>
+        quantity
+      </ion-col>
+      <ion-col>
+        total
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of order.items">
+      <ion-col>
+        {{item.itemData.title}}
+      </ion-col>
+      <ion-col>
+        {{item.itemData.price | currency}}
+      </ion-col>
+      <ion-col>
+        {{item.quantity}}
+      </ion-col>
+      <ion-col>
+        {{item.quantity * item.itemData.price | currency}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

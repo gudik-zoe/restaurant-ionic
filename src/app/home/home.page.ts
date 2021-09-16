@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable prefer-const */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -13,7 +14,7 @@ import { AuthService } from './login/auth.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit, OnDestroy {
-  cardLength: number = null;
+  cardLength: number = 0;
   userSignedIn: Subscription;
   addToCardSubjectSubscription: Subscription;
   cardItemsNumber: Subscription;
@@ -48,8 +49,8 @@ export class HomePage implements OnInit, OnDestroy {
     );
   }
 
-  ionViewWillEnter() {
-    this.ngOnInitMethods();
+  ionViewDidEnter() {
+    // this.ngOnInitMethods();
   }
 
   ngOnInitMethods() {
@@ -74,9 +75,11 @@ export class HomePage implements OnInit, OnDestroy {
     );
     this.addToCardSubjectSubscription =
       this.cardService.addToCardSubject.subscribe((data: AddItemSubject) => {
-        console.log('subscribing 2nd subject');
+        console.log(data);
+        console.log(this.cardLength);
         if (data.add) {
-          this.cardLength++;
+          this.cardLength = this.cardLength + data.quantity;
+          console.log(this.cardLength);
         } else {
           this.cardLength -= data.quantity;
         }
