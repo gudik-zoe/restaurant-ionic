@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Order details</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onClose()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        item
+      </ion-col>
+      <ion-col>
+        price
+      </ion-col>
+      <ion-col>
+        quantity
+      </ion-col>
+      <ion-col>
+        total
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of order.items">
+      <ion-col>
+        {{item.itemData.title}}
+      </ion-col>
+      <ion-col>
+        {{item.itemData.price}}
+      </ion-col>
+      <ion-col>
+        {{item.quantity}}
+      </ion-col>
+      <ion-col>
+        {{item.quantity * item.itemData.price | currency}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        Total: {{order.total | currency}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

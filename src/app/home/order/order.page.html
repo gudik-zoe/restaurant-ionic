@@ -1,34 +1,19 @@
 <app-header [title]="'Orders'" [defaultHref]="'home/order'" [back]="false">
 </app-header>
 
-<ion-content *ngFor="let order of myOrders">
+<ion-content>
   <ion-grid>
-    <ion-row>
-      <ion-col>
-        Item
-      </ion-col>
-      <ion-col>
-        Price
-      </ion-col>
-      <ion-col>
-        quantity
-      </ion-col>
-      <ion-col>
-        total
-      </ion-col>
-    </ion-row>
-    <ion-row *ngFor="let item of order.items">
-      <ion-col>
-        {{item.itemData.title}}
-      </ion-col>
-      <ion-col>
-        {{item.itemData.price | currency}}
-      </ion-col>
-      <ion-col>
-        {{item.quantity}}
-      </ion-col>
-      <ion-col>
-        {{item.quantity * item.itemData.price | currency}}
+    <ion-row *ngFor="let order of myOrders">
+      <ion-col style="border-radius: 10px; margin-top: 8px; background-color: red;">
+        <ion-list>
+          <ion-item>
+
+            <ion-label slot="start">Order N# {{order._id}}</ion-label>
+            <ion-label>
+              <ion-button color="secondary" (click)="openModal(order)">details</ion-button>
+            </ion-label>
+          </ion-item>
+        </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>

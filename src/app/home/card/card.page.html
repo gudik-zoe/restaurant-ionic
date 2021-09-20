@@ -9,7 +9,7 @@
             <ion-thumbnail slot="start">
               <ion-img [src]="item.itemData.imageUrl"></ion-img>
             </ion-thumbnail>
-            {{item.itemData.title}}
+            {{item.itemData.title}} - {{item.itemData.price}}
             <ion-label slot="end">
               <ion-button size="small" color="danger" (click)="minus(item)">-</ion-button>
               {{item.quantity}}
@@ -27,7 +27,8 @@
           <ion-label slot="start" *ngIf="card" color="secondary" class="label">Total </ion-label>
           <ion-label slot="end" *ngIf="card" color="secondary" class="label2">{{card.total | currency}} </ion-label>
         </ion-item>
-        <ion-button color="danger" expand="block" type="button" class="order-button" (click)="confirmOrder()">
+        <ion-button color="danger" expand="block" type="button" class="order-button" (click)="confirmOrder()"
+          [disabled]="card.total === 0">
           <ion-label> Confirm Order</ion-label>
         </ion-button>
       </ion-col>
