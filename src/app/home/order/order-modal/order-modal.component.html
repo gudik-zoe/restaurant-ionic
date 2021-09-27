@@ -1,8 +1,8 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Order details</ion-title>
-    <ion-buttons slot="primary">
-      <ion-button (click)="onClose()">
+  <ion-toolbar color="primary">
+    <ion-title>Order #{{order._id | slice:0:4}}</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="onClose()" size="large">
         <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -10,45 +10,54 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        item
-      </ion-col>
-      <ion-col>
-        price
-      </ion-col>
-      <ion-col>
-        quantity
-      </ion-col>
-      <ion-col>
-        total
-      </ion-col>
-    </ion-row>
-    <ion-row *ngFor="let item of order.items">
-      <ion-col>
-        {{item.itemData.title}}
-      </ion-col>
-      <ion-col>
-        {{item.itemData.price}}
-      </ion-col>
-      <ion-col>
-        {{item.quantity}}
-      </ion-col>
-      <ion-col>
-        {{item.quantity * item.itemData.price | currency}}
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-      </ion-col>
-      <ion-col>
-      </ion-col>
-      <ion-col>
-      </ion-col>
-      <ion-col>
-        Total: {{order.total | currency}}
-      </ion-col>
-    </ion-row>
+  <ion-grid style="margin-top: 15px;">
+    <div class="table-header">
+      <ion-row>
+        <ion-col>
+          <ion-label class="header-title">Item</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label class="header-title">Price</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label class="header-title">Quantity</ion-label>
+        </ion-col>
+        <ion-col>
+          <ion-label class="header-title">Total</ion-label>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngFor="let item of order.items; let i = index">
+      <div ngClass="{{i % 2 === 0 ? 'first-class':'second-class' }}">
+        <ion-row class="ion-col-sides">
+          <ion-col>
+            <ion-label class="table-content"> {{item.itemData.title}}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label class="table-content"> {{item.itemData.price | currency}}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label class="table-content">{{item.quantity}}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label class="table-content"> {{item.quantity * item.itemData.price | currency}}</ion-label>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+    <div class="table-footer">
+      <ion-row>
+        <ion-col>
+          <ion-label class="bottom-title-total">Total:</ion-label>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          <ion-label class="bottom-title-total">{{order.total | currency}}</ion-label>
+        </ion-col>
+      </ion-row>
+    </div>
   </ion-grid>
 </ion-content>

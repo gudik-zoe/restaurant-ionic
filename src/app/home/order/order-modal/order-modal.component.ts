@@ -11,19 +11,8 @@ export class OrderModalComponent implements OnInit {
   @Input() order: Order;
   constructor(private modalCtrl: ModalController) {}
 
-  doSmthn() {
-    this.modalCtrl.dismiss(
-      {
-        firstName: 'tony',
-        lastName: 'khoury',
-        data: `im the ovject with the data`,
-      },
-      'did something'
-    );
-  }
-
   onClose() {
-    this.modalCtrl.dismiss(null, 'cancel');
+    this.modalCtrl.dismiss();
   }
 
   ngOnInit() {}

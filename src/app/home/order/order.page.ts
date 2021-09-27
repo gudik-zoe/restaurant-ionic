@@ -41,9 +41,6 @@ export class OrderPage implements OnInit {
       .then((modalEL) => {
         modalEL.present();
         return modalEL.onDidDismiss();
-      })
-      .then((result) => {
-        console.log(result);
       });
   }
 
@@ -53,31 +50,6 @@ export class OrderPage implements OnInit {
     } catch (err) {
       this.errorHandler.showError(err);
     }
-  }
-  getOrderDetails(order: Order) {
-    this.actionSheetCtrl
-      .create({
-        header: 'order details',
-        buttons: [
-          {
-            text: 'Select date',
-            handler: () => {
-              console.log('select date');
-            },
-          },
-          {
-            text: 'Random date',
-            handler: () => {
-              console.log('random  date');
-            },
-          },
-          {
-            text: 'Cancel',
-            role: 'cancel',
-          },
-        ],
-      })
-      .then((actionSheetEl) => actionSheetEl.present());
   }
 
   ngOnInit() {

@@ -10,11 +10,10 @@
             Order N# {{order._id | slice:0:4}}
           </ion-label>
           <ion-label>
-            <ion-button color="secondary" (click)="getOrderDetails(order)">details</ion-button>
+            <ion-button color="secondary" (click)="openModal(order)">details</ion-button>
           </ion-label>
         </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
