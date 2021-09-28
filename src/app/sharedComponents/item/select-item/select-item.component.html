@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>item editing</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content style="margin-top: 10px; " color="light">
+  <div style="border-radius: 10px;">
+    <ion-item lines="none" color="secondary" style="margin-top: 10px; padding: 8px; border-radius: 8px;">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="item.imageUrl"></ion-img>
+      </ion-thumbnail>
+      <ion-label color="dark">{{item.title}}</ion-label>
+      <ion-label slot="end" color="dark">
+        <ion-button size="small" color="danger" (click)="minus(item)">-</ion-button>
+        {{quantity}}
+        <ion-button size="small" color="warning" (click)="plus(item)">+</ion-button>
+      </ion-label>
+    </ion-item>
+
+    <ion-button color="primary" (click)="confirmOrder()" expand="block" type="submit" [disabled]="quantity === 0">
+      add To Cart
+    </ion-button>
+  </div>
+</ion-content>

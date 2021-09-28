@@ -1,12 +1,20 @@
+/* eslint-disable no-cond-assign */
+/* eslint-disable object-shorthand */
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ToastController } from '@ionic/angular';
+import {
+  ActionSheetController,
+  AlertController,
+  ModalController,
+  ToastController,
+} from '@ionic/angular';
 import { CardService } from 'src/app/home/card/card.service';
 import { Item } from 'src/app/models/item';
 import { ResultList } from 'src/app/models/resultList';
 import { ErrorHandlerService } from '../../utility/error-handler.service';
 import { ItemsService } from './items.service';
+import { SelectItemComponent } from './select-item/select-item.component';
 
 @Component({
   selector: 'app-item',
@@ -20,31 +28,53 @@ export class ItemComponent implements OnInit {
     private errorHandler: ErrorHandlerService,
     private router: Router,
     public toastController: ToastController,
-    private cardService: CardService
+    private cardService: CardService,
+    private actionSheet: ActionSheetController,
+    private modalController: ModalController
   ) {}
   @Input() category: string;
   items: Item[];
 
   public addToCart(item: Item) {
-    this.itemsService.addItemToCard(item).subscribe(
-      (data: any) => {
-        if (data) {
-          this.cardService.addToCardSubject.next({ quantity: 1, add: true });
-          this.toastController
-            .create({
-              message: `item has been added succesfully`,
-              duration: 2000,
-              position: 'top',
-            })
-            .then((alertEl) => {
-              alertEl.present();
-            });
+    this.modalController
+      .create({
+        component: SelectItemComponent,
+        componentProps: { item: item },
+        cssClass: 'my-class',
+      })
+      .then((element) => {
+        element.present();
+        return element.onDidDismiss();
+      })
+      .then((result: any) => {
+        if ((result.role = 'confirm')) {
+          const itemData = result;
+          this.itemsService
+            .addItemToCard(itemData.data.item, itemData.data.quantity)
+            .subscribe(
+              (data: any) => {
+                if (data) {
+                  this.cardService.addToCardSubject.next({
+                    quantity: itemData.data.quantity,
+                    add: true,
+                  });
+                  this.toastController
+                    .create({
+                      message: `item has been added succesfully`,
+                      duration: 2000,
+                      position: 'top',
+                    })
+                    .then((alertEl) => {
+                      alertEl.present();
+                    });
+                }
+              },
+              (err) => {
+                this.errorHandler.showError(err);
+              }
+            );
         }
-      },
-      (err) => {
-        this.errorHandler.showError(err);
-      }
-    );
+      });
   }
 
   showError(error) {

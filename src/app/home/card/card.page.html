@@ -9,7 +9,7 @@
             <ion-thumbnail slot="start">
               <ion-img [src]="item.itemData.imageUrl"></ion-img>
             </ion-thumbnail>
-            {{item.itemData.title}} - {{item.itemData.price}}
+            {{item.itemData.title}} {{item.itemData.price | currency}}
             <ion-label slot="end">
               <ion-button size="small" color="danger" (click)="minus(item)">-</ion-button>
               {{item.quantity}}
@@ -23,7 +23,7 @@
             </ion-item-option>
           </ion-item-options>
         </ion-item-sliding>
-        <ion-item class="total" color="secondary">
+        <ion-item class="total" color="light">
           <ion-label slot="start" *ngIf="card" color="secondary" class="label">Total </ion-label>
           <ion-label slot="end" *ngIf="card" color="secondary" class="label2">{{card.total | currency}} </ion-label>
         </ion-item>

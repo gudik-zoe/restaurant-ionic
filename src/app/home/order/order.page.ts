@@ -17,8 +17,7 @@ export class OrderPage implements OnInit {
   constructor(
     private orderService: OrderService,
     private errorHandler: ErrorHandlerService,
-    private modalCtrl: ModalController,
-    private actionSheetCtrl: ActionSheetController
+    private modalCtrl: ModalController
   ) {}
   myOrders: Order[];
   order: Order;

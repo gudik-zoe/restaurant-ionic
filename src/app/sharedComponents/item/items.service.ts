@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/member-ordering */
@@ -30,11 +31,11 @@ export class ItemsService {
     });
   }
 
-  public addItemToCard(item: Item) {
+  public addItemToCard(item: Item, quantity: number) {
     try {
       return this.http.post(this.rootUrl + 'card', {
         itemId: item._id,
-        quantity: 1,
+        quantity: quantity,
       });
     } catch (err) {
       console.log(err);
