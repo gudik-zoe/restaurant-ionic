@@ -5,6 +5,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { SignUp } from 'src/app/models/signup';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -22,6 +23,10 @@ export class AuthService {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  public signUp(SignUpForm: SignUp) {
+    return this.http.post(this.rootUrl + 'auth/signUp', { email, password });
   }
 
   public isAuthenticated() {
