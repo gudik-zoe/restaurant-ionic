@@ -1,0 +1,36 @@
+<form [formGroup]="signInForm">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">E-mail</ion-label>
+            <ion-input type="email" formControlName="email" name="email" placeholder="email@email.com"></ion-input>
+          </ion-item>
+          <ion-item lines="none" *ngIf="signInForm.get('email').invalid &&
+          signInForm.get('email').touched">
+            <p>please enter a valid email adress</p>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">password</ion-label>
+            <ion-input type="password" name="password" formControlName="password">
+            </ion-input>
+          </ion-item>
+          <ion-item lines="none" *ngIf="signInForm.get('password').invalid &&
+          signInForm.get('password').touched">
+            <p>password should have more than 6 characters</p>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-button color="danger" (click)="login(signInForm.get('email').value,
+        signInForm.get('password').value)" expand="block" type="submit" [disabled]="!signInForm.valid">
+          Log In
+        </ion-button>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</form>

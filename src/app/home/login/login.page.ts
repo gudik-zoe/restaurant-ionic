@@ -21,14 +21,14 @@ export class LoginPage implements OnInit {
     private errorHandler: ErrorHandlerService
   ) {}
 
-  isLoggedIn: boolean = true;
+  signIn: boolean = true;
   onSubmit(myForm: NgForm) {
     if (!myForm.valid) {
       return;
     }
     const email = myForm.value.email;
     const password = myForm.value.password;
-    if (this.isLoggedIn) {
+    if (this.signIn) {
       console.log(email + ' ' + password + 'signing in ');
     } else {
       console.log(email + ' ' + password + 'signing up ');
@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
   }
 
   switchAuthMode() {
-    this.isLoggedIn = !this.isLoggedIn;
+    this.signIn = !this.signIn;
   }
 
   login(myForm) {

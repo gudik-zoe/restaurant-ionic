@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './home/login/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private route: Router) {}
+  constructor(private route: Router, private authService: AuthService) {}
 
-  goToDrinkPage() {
+  logOut() {
+    this.authService.userSignedIn.next(false);
+    localStorage.removeItem('token');
     this.route.navigate(['home/login']);
   }
 }

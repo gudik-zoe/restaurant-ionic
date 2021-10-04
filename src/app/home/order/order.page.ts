@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, ModalController } from '@ionic/angular';
 import { Order } from 'src/app/models/order';
 import { ErrorHandlerService } from 'src/app/utility/error-handler.service';
+import { AuthService } from '../login/auth.service';
 import { OrderModalComponent } from './order-modal/order-modal.component';
 import { OrderService } from './order.service';
 
@@ -17,7 +18,8 @@ export class OrderPage implements OnInit {
   constructor(
     private orderService: OrderService,
     private errorHandler: ErrorHandlerService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private authService: AuthService
   ) {}
   myOrders: Order[];
   order: Order;
@@ -51,7 +53,19 @@ export class OrderPage implements OnInit {
     }
   }
 
+  ionViewWillEnter() {
+    if (this.authService.isAuthenticated()) {
+      this.getMyOrders();
+    } else {
+      this.myOrders = null;
+    }
+  }
+
   ngOnInit() {
-    this.getMyOrders();
+    if (this.authService.isAuthenticated()) {
+      this.getMyOrders();
+    } else {
+      this.myOrders = null;
+    }
   }
 }

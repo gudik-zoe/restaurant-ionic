@@ -18,6 +18,7 @@ export class HomePage implements OnInit, OnDestroy {
   userSignedIn: Subscription;
   addToCardSubjectSubscription: Subscription;
   cardItemsNumber: Subscription;
+  userIsAuthenticated: boolean = false;
   constructor(
     private cardService: CardService,
     public authService: AuthService,
@@ -50,45 +51,46 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ionViewDidEnter() {
-    // this.ngOnInitMethods();
+    this.ngOnInitMethods();
   }
 
   ngOnInitMethods() {
     this.userSignedIn = this.authService.userSignedIn.subscribe(
       (data: boolean) => {
-        console.log('subscribing 1st subject');
+        console.log('first ng on init method in home');
         if (data) {
+          console.log('data in userSignIn subject' + data);
+          this.userIsAuthenticated = true;
           this.cardService.getMyCardItemsNumber().subscribe(
             (cardItemsNumber: number) => {
               console.log(cardItemsNumber);
               this.cardLength = cardItemsNumber;
             },
             (error) => {
+              this.userIsAuthenticated = false;
               this.errorHandler.showError(error);
               this.cardLength = null;
             }
           );
         } else {
+          this.userIsAuthenticated = false;
           this.cardLength = null;
         }
       }
     );
     this.addToCardSubjectSubscription =
       this.cardService.addToCardSubject.subscribe((data: AddItemSubject) => {
-        console.log(data);
-        console.log(this.cardLength);
+        console.log('second ng on init method in home');
         if (data.add) {
           this.cardLength = this.cardLength + data.quantity;
-          console.log(this.cardLength);
         } else {
           this.cardLength -= data.quantity;
         }
       });
     this.cardItemsNumber = this.cardService.cardItemNumber.subscribe(
       (data: number) => {
-        console.log('subscribing 3rd subject');
+        console.log('third ng on init method in home');
         if (data) {
-          console.log(data);
           this.cardLength = data;
         }
       }
@@ -99,6 +101,7 @@ export class HomePage implements OnInit, OnDestroy {
     // this.getCardItemsNumber();
     // if (this.authService.isAuthenticated()) {
     if (this.authService.isAuthenticated()) {
+      this.userIsAuthenticated = true;
       this.ngOnInitMethods();
     }
     // }

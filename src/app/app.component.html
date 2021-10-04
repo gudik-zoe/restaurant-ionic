@@ -8,40 +8,10 @@
     <ion-content>
       <ion-list>
         <ion-menu-toggle>
-          <ion-item lines="none" routerLink="home/menu/appetizers">
-            <ion-icon name="business" slot="start">
-            </ion-icon>
-            <ion-label class="label">Appetizers</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle>
-          <ion-item lines="none" routerLink="home/menu/combos">
-            <ion-icon name="fast-food-outline" slot="start"></ion-icon>
-            <ion-label class="label">Combos</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle>
-
-          <ion-item lines="none">
-            <ion-icon name="beer-outline" slot="start"></ion-icon>
-            <ion-label class="label">Drinks</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-
-        <ion-menu-toggle>
-          <ion-item lines="none" routerLink="home/menu/desserts">
+          <ion-item lines="none" (click)="logOut()">
             <ion-icon name="exit" slot="start">
             </ion-icon>
-            <ion-label class="label">Desserts</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-
-
-        <ion-menu-toggle>
-          <ion-item lines="none" (click)="goToDrinkPage()">
-            <ion-icon name="exit" slot="start">
-            </ion-icon>
-            <ion-label class="label">go to Login</ion-label>
+            <ion-label class="label">Log out</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
