@@ -29,7 +29,6 @@ export class ItemComponent implements OnInit {
     private router: Router,
     public toastController: ToastController,
     private cardService: CardService,
-    private actionSheet: ActionSheetController,
     private modalController: ModalController
   ) {}
   @Input() category: string;

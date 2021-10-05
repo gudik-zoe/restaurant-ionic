@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable object-shorthand */
+/* eslint-disable prefer-const */
+/* eslint-disable no-cond-assign */
+// eslint-disable-next-line @typescript-eslint/type-annotation-spacing
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,20 +16,24 @@ export class ErrorHandlerService {
     private alertController: AlertController,
     private router: Router
   ) {}
-
-  // eslint-disable-next-line @typescript-eslint/type-annotation-spacing
+  errorMessage: string = '';
   showError(
     error: HttpErrorResponse,
+    header: string = '',
     route: string = '',
-    // header: string = 'error',
-    // message: string = 'unknown error occured',
     text: string = 'ok'
   ) {
-    console.log(error.error);
+    if ((error.error.status = 422) && error.error.data) {
+      for (let message of error.error.data) {
+        this.errorMessage += message + '\n';
+      }
+    } else {
+      this.errorMessage = error.error.message;
+    }
     this.alertController
       .create({
-        header: error.error.status,
-        message: error.error.message,
+        header: header,
+        message: this.errorMessage,
         buttons: [
           {
             text,

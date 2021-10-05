@@ -3,7 +3,7 @@
   <ion-card color="light">
     <ion-card-content>
       <app-sign-in *ngIf="signIn"></app-sign-in>
-      <app-sign-up *ngIf="!signIn"></app-sign-up>
+      <app-sign-up *ngIf="!signIn" (goToLogin)="goToLoginInParent($event)"></app-sign-up>
       <ion-button color="primary" fill="clear" expand="block" type="button" (click)="switchAuthMode()">
         <small style="color: blue;">switch
           to

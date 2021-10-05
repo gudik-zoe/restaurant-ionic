@@ -1,3 +1,5 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/semi */
 /* eslint-disable @typescript-eslint/type-annotation-spacing */
 /* eslint-disable @typescript-eslint/quotes */
@@ -26,7 +28,19 @@ export class AuthService {
   }
 
   public signUp(SignUpForm: SignUp) {
-    return this.http.post(this.rootUrl + 'auth/signUp', { email, password });
+    return new Promise<any>((resolve, reject) => {
+      return this.http.post(this.rootUrl + 'user/signUp', SignUpForm).subscribe(
+        (data: any) => {
+          if (data) {
+            resolve(data);
+          }
+        },
+        (err) => {
+          console.log(err);
+          reject(err);
+        }
+      );
+    });
   }
 
   public isAuthenticated() {

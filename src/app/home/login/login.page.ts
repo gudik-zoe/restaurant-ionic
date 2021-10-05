@@ -4,7 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { ErrorHandlerService } from 'src/app/utility/error-handler.service';
 import { AuthService } from './auth.service';
 
@@ -18,7 +18,8 @@ export class LoginPage implements OnInit {
     private loadingCtrl: LoadingController,
     private authService: AuthService,
     private router: Router,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private toastController: ToastController
   ) {}
 
   signIn: boolean = true;
@@ -32,6 +33,20 @@ export class LoginPage implements OnInit {
       console.log(email + ' ' + password + 'signing in ');
     } else {
       console.log(email + ' ' + password + 'signing up ');
+    }
+  }
+  goToLoginInParent(data: boolean) {
+    if (data) {
+      this.signIn = true;
+      this.toastController
+        .create({
+          message: `Signed up succesfully`,
+          duration: 2000,
+          position: 'top',
+        })
+        .then((alertEl) => {
+          alertEl.present();
+        });
     }
   }
 
