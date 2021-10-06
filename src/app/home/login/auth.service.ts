@@ -29,17 +29,19 @@ export class AuthService {
 
   public signUp(SignUpForm: SignUp) {
     return new Promise<any>((resolve, reject) => {
-      return this.http.post(this.rootUrl + 'user/signUp', SignUpForm).subscribe(
-        (data: any) => {
-          if (data) {
-            resolve(data);
+      return this.http
+        .post(this.rootUrl + 'auth/authenticateUser', SignUpForm)
+        .subscribe(
+          (data: any) => {
+            if (data) {
+              resolve(data);
+            }
+          },
+          (error) => {
+            console.log(error);
+            reject(error);
           }
-        },
-        (err) => {
-          console.log(err);
-          reject(err);
-        }
-      );
+        );
     });
   }
 

@@ -3,7 +3,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Order } from 'src/app/models/order';
-import { ItemsService } from 'src/app/sharedComponents/item/items.service';
+import { ItemsService } from 'src/app/shared/item/items.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

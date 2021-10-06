@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 import { AddItemSubject } from 'src/app/models/addItemSubject';
 import { Card } from 'src/app/models/card';
 import { CardItem } from 'src/app/models/cardItem';
-import { ItemsService } from 'src/app/sharedComponents/item/items.service';
+import { ItemsService } from 'src/app/shared/item/items.service';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../login/auth.service';
 

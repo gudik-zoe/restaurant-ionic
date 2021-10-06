@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
 import { ErrorHandlerService } from 'src/app/utility/error-handler.service';
+import { Custome } from 'src/app/utility/validator';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { AuthService } from '../auth.service';
 })
 export class SignUpComponent implements OnInit {
   constructor(
-    private fb: FormBuilder,
+    private formbuilder: FormBuilder,
     private authService: AuthService,
     private errorHandler: ErrorHandlerService,
     private loadingCtrl: LoadingController
@@ -21,17 +22,16 @@ export class SignUpComponent implements OnInit {
   signUpSuccessful: any;
   @Output() goToLogin = new EventEmitter<boolean>();
   fillSignUpForm() {
-    this.signUpForm = this.fb.group(
+    this.signUpForm = this.formbuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', Validators.required],
       }
       // { validator: [Custome.PasswordConfirmation, Custome.passwordPattern] }
     );
   }
 
-  signUp() {
+  async signUp() {
     if (!this.signUpForm.valid) {
       return;
     } else {
@@ -46,8 +46,9 @@ export class SignUpComponent implements OnInit {
             this.goToLogin.next(true);
             loadingEl.dismiss();
           } catch (err) {
-            this.errorHandler.showError(err, 'error signing up');
+            console.log('here');
             loadingEl.dismiss();
+            this.errorHandler.showError(err, 'error signing up');
           }
         });
     }

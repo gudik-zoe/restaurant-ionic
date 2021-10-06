@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { OrderPageRoutingModule } from './order-routing.module';
 
 import { OrderPage } from './order.page';
-import { SharedComponentsModule } from 'src/app/sharedComponents/shared-components.module';
 import { OrderModalComponent } from './order-modal/order-modal.component';
+import { SharedComponentsModule } from 'src/app/shared/shared-components.module';
 
 @NgModule({
   imports: [

@@ -7,9 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
-import { SharedComponentsModule } from 'src/app/sharedComponents/shared-components.module';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { SharedComponentsModule } from 'src/app/shared/shared-components.module';
 
 @NgModule({
   imports: [

@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { MenuPageRoutingModule } from './menu-routing.module';
 import { SuperTabsModule } from '@ionic-super-tabs/angular';
 import { MenuPage } from './menu.page';
-import { SharedComponentsModule } from 'src/app/sharedComponents/shared-components.module';
+import { SharedComponentsModule } from 'src/app/shared/shared-components.module';
 
 @NgModule({
   imports: [

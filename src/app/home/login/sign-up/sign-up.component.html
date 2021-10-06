@@ -7,28 +7,43 @@
             <ion-label position="floating">E-mail</ion-label>
             <ion-input type="email" formControlName="email" name="email" placeholder="email@email.com"></ion-input>
           </ion-item>
-          <ion-item lines="none" *ngIf="signUpForm.get('email').invalid &&
+          <div lines="none" *ngIf="signUpForm.get('email').invalid &&
           signUpForm.get('email').touched">
             <p>please enter a valid email adress</p>
-          </ion-item>
+          </div>
           <ion-item>
             <ion-label position="floating">password</ion-label>
             <ion-input type="password" formControlName="password">
             </ion-input>
           </ion-item>
-          <ion-item lines="none" *ngIf="signUpForm.get('password').invalid &&
+          <ion-item lines="none" *ngIf="signUpForm.get('password').errors?.required &&
+          signUpForm.get('password').touched">
+            <p>password is required</p>
+          </ion-item>
+          <ion-item lines="none" *ngIf="signUpForm.get('password').errors?.minlength &&
           signUpForm.get('password').touched">
             <p>password should have more than 6 characters</p>
           </ion-item>
-          <ion-item>
+          <ion-item lines="none" *ngIf="
+          signUpForm.get('password').errors
+          ?.passwordPatternError &&
+          signUpForm.get('password').touched
+          ">
+            <p>password should have alphanumeric charactes </p>
+          </ion-item>
+          <!-- <ion-item>
             <ion-label position="floating">confirm password</ion-label>
             <ion-input type="password" formControlName="confirmPassword">
             </ion-input>
           </ion-item>
-          <ion-item lines="none" *ngIf="signUpForm.get('confirmPassword').invalid &&
+          <ion-item lines="none" *ngIf="signUpForm.get('confirmPassword').errors?.minlength &&
             signUpForm.get('confirmPassword').touched">
             <p>confirm password should have more than 6 characters</p>
           </ion-item>
+          <ion-item lines="none" *ngIf="signUpForm.get('confirmPassword').errors?.customeError &&
+          signUpForm.get('confirmPassword').touched">
+            <p>not identical to password</p>
+          </ion-item> -->
         </ion-list>
       </ion-col>
     </ion-row>

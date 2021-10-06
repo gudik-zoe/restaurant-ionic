@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable object-shorthand */
 /* eslint-disable prefer-const */
@@ -23,7 +24,7 @@ export class ErrorHandlerService {
     route: string = '',
     text: string = 'ok'
   ) {
-    if ((error.error.status = 422) && error.error.data) {
+    if (error.error.status === 422 && error.error.data) {
       for (let message of error.error.data) {
         this.errorMessage += message + '\n';
       }
