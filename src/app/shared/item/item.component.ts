@@ -46,7 +46,7 @@ export class ItemComponent implements OnInit {
         return element.onDidDismiss();
       })
       .then((result: any) => {
-        if ((result.role = 'confirm')) {
+        if (result.role === 'confirm') {
           const itemData = result;
           this.itemsService
             .addItemToCard(itemData.data.item, itemData.data.quantity)

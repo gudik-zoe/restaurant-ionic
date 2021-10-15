@@ -1,14 +1,27 @@
 <app-header [title]="'login'" [defaultHref]="'home/card'" [back]="false"></app-header>
-<ion-content style="margin-top: 20px;" color="secondary">
-  <ion-card color="light">
-    <ion-card-content>
-      <app-sign-in *ngIf="signIn"></app-sign-in>
+
+<!-- <app-sign-in *ngIf="signIn"></app-sign-in>
       <app-sign-up *ngIf="!signIn" (goToLogin)="goToLoginInParent($event)"></app-sign-up>
       <ion-button color="primary" fill="clear" expand="block" type="button" (click)="switchAuthMode()">
         <small style="color: blue;">switch
           to
           {{ !signIn ? 'login' : 'signUp' }}</small>
-      </ion-button>
-    </ion-card-content>
+        </ion-button> -->
+
+<ion-segment value="signIn" (ionChange)="onFilter($event)" color="dark">
+  <ion-segment-button value="signIn">
+    <ion-label> Sign in</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="signUp">
+    <ion-label> Sign up</ion-label>
+
+  </ion-segment-button>
+</ion-segment>
+<ion-content style="margin-top: 20px;" color="secondary">
+  <ion-card>
+
+    <app-sign-in *ngIf="signIn"></app-sign-in>
+    <app-sign-up *ngIf="!signIn"></app-sign-up>
+
   </ion-card>
 </ion-content>

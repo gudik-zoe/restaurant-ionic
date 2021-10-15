@@ -10,6 +10,7 @@ import { LoginPage } from './login.page';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SharedComponentsModule } from 'src/app/shared/shared-components.module';
+import { ConfirmAuthenticationComponent } from './sign-up/confirm-authentication/confirm-authentication.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,11 @@ import { SharedComponentsModule } from 'src/app/shared/shared-components.module'
     SharedComponentsModule,
     ReactiveFormsModule,
   ],
-  declarations: [LoginPage, SignInComponent, SignUpComponent],
+  declarations: [
+    LoginPage,
+    SignInComponent,
+    SignUpComponent,
+    ConfirmAuthenticationComponent,
+  ],
 })
 export class LoginPageModule {}

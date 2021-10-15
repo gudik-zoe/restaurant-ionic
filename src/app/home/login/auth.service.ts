@@ -7,6 +7,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { ConfirmAuth } from 'src/app/models/confirmauth';
 import { SignUp } from 'src/app/models/signup';
 import { environment } from 'src/environments/environment';
 
@@ -40,6 +41,23 @@ export class AuthService {
           (error) => {
             console.log(error);
             reject(error);
+          }
+        );
+    });
+  }
+
+  public confirmUserByTemporaryPassword(confirmAuth: ConfirmAuth) {
+    return new Promise<any>((resolve, reject) => {
+      return this.http
+        .post(this.rootUrl + 'auth/confirmauthentication', confirmAuth)
+        .subscribe(
+          (data: any) => {
+            if (data.token) {
+              resolve(data.token);
+            }
+          },
+          (err) => {
+            reject(err);
           }
         );
     });
