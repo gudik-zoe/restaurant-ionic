@@ -35,6 +35,8 @@ export class SignUpComponent implements OnInit {
   fillSignUpForm() {
     this.signUpForm = this.formbuilder.group(
       {
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
       }
@@ -80,7 +82,12 @@ export class SignUpComponent implements OnInit {
               })
               .then((result: any) => {
                 if (result.role === 'confirm') {
-                  this.confirmUserByTemporaryPassword(result.data);
+                  this.token = result.data.token;
+                  localStorage.setItem('token', this.token);
+                  this.loadingCtrl.dismiss();
+                  this.authService.userSignedIn.next(true);
+                  this.router.navigate(['/home/menu']);
+                  // this.confirmUserByTemporaryPassword(result.data);
                 }
               });
             // this.goToLogin.next(true);

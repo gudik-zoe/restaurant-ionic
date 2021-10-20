@@ -1,19 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>insert temporary password</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="'confirm password'" [defaultHref]="'home/card'" [back]="false"></app-header>
 <ion-content>
   <ion-item *ngIf="email">
     <ion-label position="floating">E-mail</ion-label>
-    <p>{{email}}</p>
     <ion-input type="text" [value]="email" disabled=true></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Password</ion-label>
     <ion-input type="password" [(ngModel)]="temporaryPassword"></ion-input>
   </ion-item>
-  <ion-button color="danger" (click)="confirmPassword()" expand="block" type="submit">
+  <ion-button color="danger" (click)="confirmPassword()" expand="block" type="submit" [disabled]="!temporaryPassword">
     confirm password
   </ion-button>
 
