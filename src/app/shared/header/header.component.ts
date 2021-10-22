@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
   @Input() title: string;
   @Input() defaultHref: string;
   @Input() back: boolean;
+  @Input() user: any;
 
   constructor() {}
 
