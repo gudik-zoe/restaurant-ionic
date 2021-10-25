@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/member-ordering */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   AlertController,
@@ -21,7 +22,7 @@ import { CardService } from './card.service';
   templateUrl: './card.page.html',
   styleUrls: ['./card.page.scss'],
 })
-export class CardPage implements OnInit {
+export class CardPage implements OnInit, OnDestroy {
   constructor(
     private cardService: CardService,
     private authService: AuthService,
@@ -31,9 +32,13 @@ export class CardPage implements OnInit {
     private loadingCtrl: LoadingController,
     private route: Router
   ) {}
+  ngOnDestroy(): void {
+    this.passedFromNgOnInit = false;
+  }
   card: Card;
   total: number;
   order: Order;
+  passedFromNgOnInit: boolean;
 
   private async getMyCard() {
     try {
@@ -169,6 +174,8 @@ export class CardPage implements OnInit {
   }
 
   ngOnInit() {
+    console.log('in ng on init card');
+    this.passedFromNgOnInit = true;
     if (this.authService.isAuthenticated()) {
       this.getMyCard();
     } else {
@@ -176,7 +183,7 @@ export class CardPage implements OnInit {
     }
   }
   ionViewWillEnter() {
-    if (this.authService.isAuthenticated()) {
+    if (this.authService.isAuthenticated() && !this.passedFromNgOnInit) {
       this.getMyCard();
     } else {
       this.card = null;

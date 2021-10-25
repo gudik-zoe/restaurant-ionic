@@ -1,6 +1,11 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
+import { ErrorHandlerService } from 'src/app/utility/error-handler.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,7 +13,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit {
-  constructor(private formbuilder: FormBuilder) {}
+  constructor(
+    private formbuilder: FormBuilder,
+    private loadingCtrl: LoadingController,
+    private authService: AuthService,
+    private router: Router,
+    private errorHandler: ErrorHandlerService
+  ) {}
   signInForm: FormGroup;
   showPassword: boolean;
 
@@ -24,7 +35,30 @@ export class SignInComponent implements OnInit {
   }
 
   login(email: string, password: string) {
-    console.log(email + ' ' + password);
+    if (!this.signInForm.valid) {
+      return;
+    }
+    this.loadingCtrl
+      .create({ keyboardClose: true, message: 'loggin in' })
+      .then((loadingEl) => {
+        loadingEl.present();
+        this.authService
+          .login(this.signInForm.value.email, this.signInForm.value.password)
+          .subscribe(
+            (data: any) => {
+              if (data) {
+                localStorage.setItem('token', data.token);
+                this.authService.userSignedIn.next(true);
+                loadingEl.dismiss();
+                this.router.navigate(['/home/menu']);
+              }
+            },
+            (error) => {
+              loadingEl.dismiss();
+              this.errorHandler.showError(error, 'home/login');
+            }
+          );
+      });
   }
   ngOnInit() {
     this.fillSignInForm();

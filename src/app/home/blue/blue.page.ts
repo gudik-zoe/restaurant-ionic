@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/semi */
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable quote-props */
@@ -11,6 +14,11 @@ import {
   BluetoothMatchNum,
   BluetoothScanMode,
 } from '@ionic-native/bluetooth-le/ngx';
+import {
+  BleClient,
+  numbersToDataView,
+  numberToUUID,
+} from '@capacitor-community/bluetooth-le';
 import { AlertController, Platform } from '@ionic/angular';
 
 @Component({
@@ -64,21 +72,46 @@ export class BluePage implements OnInit {
     this.blueSerial.disable();
   }
 
-  activateBluetooth() {
-    console.log('in activate bluetooth');
-    this.blueSerial.isEnabled().then(
-      (res) => {
-        this.ListDevices();
-      },
-      (err) => {
-        this.alertCtrl
-          .create({ message: 'error on activate bluetooth ' + err })
-          .then((el) => {
-            el.present();
-          });
-      }
-    );
+  async activateBluetooth() {
+    try {
+      await BleClient.initialize().then(
+        (result) => {
+          console.log('result of initialize ' + result);
+        },
+        (err) => {
+          throw err;
+        }
+      );
+      const HEART_RATE_SERVICE = '0000180d-0000-1000-8000-00805f9b34fb';
+      const HEART_RATE_MEASUREMENT_CHARACTERISTIC =
+        '00002a37-0000-1000-8000-00805f9b34fb';
+      const BODY_SENSOR_LOCATION_CHARACTERISTIC =
+        '00002a38-0000-1000-8000-00805f9b34fb';
+      const BATTERY_SERVICE = numberToUUID(0x180f);
+      const BATTERY_CHARACTERISTIC = numberToUUID(0x2a19);
+      const POLAR_PMD_SERVICE = 'fb005c80-02e7-f387-1cad-8acd2d8df0c8';
+      const POLAR_PMD_CONTROL_POINT = 'fb005c81-02e7-f387-1cad-8acd2d8df0c8';
+      const getDecices =   await BleClient.getDevices([]).then(
+        (result) => {
+          console.log('get devices result ' + result);
+        },
+        (err) => {
+          throw err;
+        }
+      );
+      //scaning method 1
+      // const device = await BleClient.requestDevice({
+      //   services: [HEART_RATE_SERVICE],
+      //   optionalServices: [BATTERY_SERVICE, POLAR_PMD_SERVICE],
+      // });
+      // console.log(device)
+
+      //scaning method 2
+    } catch (err) {
+      console.log('err ' + err);
+    }
   }
+
   ListDevices() {
     let params = {
       services: [],

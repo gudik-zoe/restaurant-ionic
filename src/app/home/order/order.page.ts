@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable object-shorthand */
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/member-ordering */
@@ -23,11 +24,11 @@ export class OrderPage implements OnInit {
   ) {}
   myOrders: Order[];
   order: Order;
+  passedFromNgOnInit: boolean = false;
 
   public async getMyOrders() {
     try {
       this.myOrders = await this.orderService.getOrders();
-      console.log(this.myOrders);
     } catch (err) {
       this.errorHandler.showError(err);
     }
@@ -54,7 +55,7 @@ export class OrderPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    if (this.authService.isAuthenticated()) {
+    if (this.authService.isAuthenticated() && !this.passedFromNgOnInit) {
       this.getMyOrders();
     } else {
       this.myOrders = null;
@@ -62,6 +63,7 @@ export class OrderPage implements OnInit {
   }
 
   ngOnInit() {
+    this.passedFromNgOnInit = true;
     if (this.authService.isAuthenticated()) {
       this.getMyOrders();
     } else {
