@@ -93,7 +93,7 @@ export class SignUpComponent implements OnInit {
             // this.goToLogin.next(true);
           } catch (err) {
             loadingEl.dismiss();
-            this.errorHandler.showError(err, 'error signing up');
+            this.errorHandler.showError(err, 'error signing up', 'home/login');
           }
         });
     }

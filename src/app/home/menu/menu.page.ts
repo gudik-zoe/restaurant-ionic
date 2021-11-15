@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuPage implements OnInit {
   constructor() {}
+
   categories = [
     {
       title: 'appetizers',

@@ -2,12 +2,8 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { LoadingController, ToastController } from '@ionic/angular';
 import { SegmentChangeEventDetail } from '@ionic/core';
-import { ErrorHandlerService } from 'src/app/utility/error-handler.service';
-import { AuthService } from './auth.service';
+import openSocket from 'socket.io-client';
 
 @Component({
   selector: 'app-login',

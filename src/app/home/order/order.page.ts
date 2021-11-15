@@ -29,6 +29,7 @@ export class OrderPage implements OnInit {
   public async getMyOrders() {
     try {
       this.myOrders = await this.orderService.getOrders();
+      console.log(this.myOrders);
     } catch (err) {
       this.errorHandler.showError(err);
     }
@@ -55,11 +56,11 @@ export class OrderPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    if (this.authService.isAuthenticated() && !this.passedFromNgOnInit) {
-      this.getMyOrders();
-    } else {
-      this.myOrders = null;
-    }
+    // if (this.authService.isAuthenticated() && !this.passedFromNgOnInit) {
+    this.getMyOrders();
+    // } else {
+    //   this.myOrders = null;
+    // }
   }
 
   ngOnInit() {

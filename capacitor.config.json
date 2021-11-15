@@ -2,7 +2,7 @@
   "plugins": {
     "BluetoothLe": {
       "displayStrings": {
-        "scanning": "weila...",
+        "scanning": "Scanning...",
         "cancel": "Cancel",
         "availableDevices": "Available devices",
         "noDeviceFound": "No device found"

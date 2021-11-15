@@ -29,14 +29,13 @@ export class OrderService {
   public getOrders(): Promise<Order[]> {
     return new Promise<any>((resolve, reject) => {
       return this.http.get(this.rootUrl + 'order').subscribe(
-        async (data: any) => {
-          // console.log(orders);
-          for (let order of data.orders) {
+        async (orders: any) => {
+          for (let order of orders) {
             for (let item of order.items) {
               item.itemData = await this.itemService.getItemById(item.itemId);
             }
           }
-          resolve(data.orders);
+          resolve(orders);
         },
         (error) => {
           reject(error);

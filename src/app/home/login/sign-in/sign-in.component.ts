@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Component, OnInit } from '@angular/core';
@@ -50,12 +51,17 @@ export class SignInComponent implements OnInit {
                 localStorage.setItem('token', data.token);
                 this.authService.userSignedIn.next(true);
                 loadingEl.dismiss();
+
                 this.router.navigate(['/home/menu']);
               }
             },
             (error) => {
               loadingEl.dismiss();
-              this.errorHandler.showError(error, 'home/login');
+              this.errorHandler.showError(
+                error,
+                'error signing in ',
+                'home/login'
+              );
             }
           );
       });

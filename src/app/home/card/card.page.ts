@@ -174,7 +174,6 @@ export class CardPage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('in ng on init card');
     this.passedFromNgOnInit = true;
     if (this.authService.isAuthenticated()) {
       this.getMyCard();
@@ -183,10 +182,10 @@ export class CardPage implements OnInit, OnDestroy {
     }
   }
   ionViewWillEnter() {
-    if (this.authService.isAuthenticated() && !this.passedFromNgOnInit) {
-      this.getMyCard();
-    } else {
-      this.card = null;
-    }
+    // if (this.authService.isAuthenticated() && !this.passedFromNgOnInit) {
+    this.getMyCard();
+    // } else {
+    //   this.card = null;
+    // }
   }
 }
