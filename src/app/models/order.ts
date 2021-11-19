@@ -6,4 +6,5 @@ export class Order {
   public userId!: string;
   public items!: CardItem[];
   public total!: number;
+  public status!: string;
 }

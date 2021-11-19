@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable object-shorthand */
 /* eslint-disable prefer-const */
@@ -9,7 +10,7 @@ import { ErrorHandlerService } from 'src/app/utility/error-handler.service';
 import { AuthService } from '../login/auth.service';
 import { OrderModalComponent } from './order-modal/order-modal.component';
 import { OrderService } from './order.service';
-
+import openSocket from 'socket.io-client';
 @Component({
   selector: 'app-order',
   templateUrl: './order.page.html',
@@ -29,7 +30,17 @@ export class OrderPage implements OnInit {
   public async getMyOrders() {
     try {
       this.myOrders = await this.orderService.getOrders();
-      console.log(this.myOrders);
+      const socket = openSocket('http://localhost:3000/');
+      socket.on('editOrder', (data: any) => {
+        if (data.action === 'edit') {
+          for (let order of this.myOrders) {
+            if (order._id === data.order._id) {
+              console.log('arriving here');
+              order.status = data.order.status;
+            }
+          }
+        }
+      });
     } catch (err) {
       this.errorHandler.showError(err);
     }

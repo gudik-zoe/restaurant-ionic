@@ -7,7 +7,7 @@
       <ion-col>
         <ion-item color="tertiary" lines="none" style="border-radius: 8px;">
           <ion-label slot="start" color="dark">
-            Order N# {{order._id | slice:0:4}}
+            Order N# {{order._id | slice:0:4}} - {{order.status}}
           </ion-label>
           <ion-label>
             <ion-button color="secondary" (click)="openModal(order)">details</ion-button>
