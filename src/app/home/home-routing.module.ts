@@ -10,35 +10,42 @@ const routes: Routes = [
       {
         path: 'menu',
         loadChildren: () =>
-          import('./menu/menu.module').then((m) => m.MenuPageModule),
+          import('./client/menu/menu.module').then((m) => m.MenuPageModule),
       },
 
       {
         path: 'card',
         loadChildren: () =>
-          import('./card/card.module').then((m) => m.CardPageModule),
+          import('./client/card/card.module').then((m) => m.CardPageModule),
       },
       {
         path: 'login',
         loadChildren: () =>
-          import('./login/login.module').then((m) => m.LoginPageModule),
+          import('./client/login/login.module').then((m) => m.LoginPageModule),
       },
       {
         path: 'order',
         loadChildren: () =>
-          import('./order/order.module').then((m) => m.OrderPageModule),
+          import('./client/order/order.module').then((m) => m.OrderPageModule),
       },
     ],
   },
   {
     path: 'order',
     loadChildren: () =>
-      import('./order/order.module').then((m) => m.OrderPageModule),
+      import('./client/order/order.module').then((m) => m.OrderPageModule),
   },
   {
     path: 'blue',
     loadChildren: () =>
-      import('./blue/blue.module').then((m) => m.BluePageModule),
+      import('./client/blue/blue.module').then((m) => m.BluePageModule),
+  },
+  {
+    path: 'management',
+    loadChildren: () =>
+      import('./admin/management/management.module').then(
+        (m) => m.ManagementPageModule
+      ),
   },
 ];
 

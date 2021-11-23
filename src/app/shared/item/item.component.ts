@@ -9,7 +9,7 @@ import {
   ModalController,
   ToastController,
 } from '@ionic/angular';
-import { CardService } from 'src/app/home/card/card.service';
+import { CardService } from 'src/app/home/client/card/card.service';
 import { Item } from 'src/app/models/item';
 import { ResultList } from 'src/app/models/resultList';
 import { ErrorHandlerService } from '../../utility/error-handler.service';

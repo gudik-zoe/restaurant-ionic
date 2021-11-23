@@ -3,11 +3,7 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
-import { CardService } from 'src/app/home/card/card.service';
-import { AddItemSubject } from 'src/app/models/addItemSubject';
 import { Item } from 'src/app/models/item';
-import { ErrorHandlerService } from 'src/app/utility/error-handler.service';
-import { ItemsService } from '../items.service';
 
 @Component({
   selector: 'app-select-item',

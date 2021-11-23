@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/member-ordering */
@@ -5,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { LoginResponse } from 'src/app/models/loginResponse';
+import { Role } from 'src/app/models/role';
 import { ErrorHandlerService } from 'src/app/utility/error-handler.service';
 import { AuthService } from '../auth.service';
 
@@ -46,14 +49,18 @@ export class SignInComponent implements OnInit {
         this.authService
           .login(this.signInForm.value.email, this.signInForm.value.password)
           .subscribe(
-            (data: any) => {
-              if (data) {
-                console.log(data.user.firstName);
-                localStorage.setItem('token', data.token);
-                this.authService.userSignedIn.next(true);
-                loadingEl.dismiss();
-
-                this.router.navigate(['/home/menu']);
+            (loginResponse: LoginResponse) => {
+              if (loginResponse) {
+                localStorage.setItem('token', loginResponse.token);
+                if (loginResponse.role.toUpperCase() === Role.user) {
+                  this.authService.userSignedIn.next(true);
+                  loadingEl.dismiss();
+                  this.router.navigate(['/home/menu']);
+                } else {
+                  loadingEl.dismiss();
+                  this.router.navigate(['/home/management']);
+                  console.log('here');
+                }
               }
             },
             (error) => {

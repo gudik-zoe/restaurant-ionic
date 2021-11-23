@@ -5,8 +5,8 @@ import { Subscription } from 'rxjs';
 import { AddItemSubject } from '../models/addItemSubject';
 import { Card } from '../models/card';
 import { ErrorHandlerService } from '../utility/error-handler.service';
-import { CardService } from './card/card.service';
-import { AuthService } from './login/auth.service';
+import { CardService } from './client/card/card.service';
+import { AuthService } from './client/login/auth.service';
 
 @Component({
   selector: 'app-home',
