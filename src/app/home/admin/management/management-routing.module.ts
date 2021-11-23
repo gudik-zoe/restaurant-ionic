@@ -7,6 +7,25 @@ const routes: Routes = [
   {
     path: '',
     component: ManagementPage,
+    children: [
+      {
+        path: 'orders',
+        loadChildren: () =>
+          import('./orders/orders.module').then((m) => m.OrdersPageModule),
+      },
+      {
+        path: 'menu',
+        loadChildren: () =>
+          import('./menu/menu.module').then((m) => m.MenuPageModule),
+      },
+      {
+        path: 'settings',
+        loadChildren: () =>
+          import('./settings/settings.module').then(
+            (m) => m.SettingsPageModule
+          ),
+      },
+    ],
   },
 ];
 

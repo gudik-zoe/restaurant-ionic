@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { ManagementPageRoutingModule } from './management-routing.module';
 
 import { ManagementPage } from './management.page';
+import { SuperTabsModule } from '@ionic-super-tabs/angular';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ManagementPageRoutingModule
+    SuperTabsModule.forRoot(),
+    ManagementPageRoutingModule,
   ],
-  declarations: [ManagementPage]
+  declarations: [ManagementPage],
 })
 export class ManagementPageModule {}

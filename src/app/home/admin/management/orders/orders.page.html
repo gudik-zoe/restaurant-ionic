@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>admin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="result">
+    <ion-row *ngFor="let order of result.orders">
+      <ion-col>
+        <ion-item lines="none" style="border-radius: 8px;">
+          <ion-label slot="start">
+            Order N# {{order._id | slice:0:3}}
+          </ion-label>
+          <ion-label slot="start">
+            status:{{order.status}}
+          </ion-label>
+          <ion-button color="danger" (click)="setToPreparing(order._id)">prepare</ion-button>
+          <ion-button color="secondary" (click)="openModal(order)">details</ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <p *ngIf="!result.orders">no orders</p>
+</ion-content>

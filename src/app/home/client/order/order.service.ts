@@ -43,4 +43,41 @@ export class OrderService {
       );
     });
   }
+
+  public getAllOrders() {
+    return new Promise<any>((resolve, reject) => {
+      return this.http.get('http://localhost:3000/order/all').subscribe(
+        async (data: any) => {
+          if (data) {
+            for (let order of data.orders) {
+              for (let item of order.items) {
+                item.itemData = await this.itemService.getItemById(item.itemId);
+              }
+            }
+            resolve(data);
+          }
+        },
+        (err) => {
+          reject(err);
+        }
+      );
+    });
+  }
+
+  public editOrder(orderId: number) {
+    return new Promise<any>((resolve, reject) => {
+      return this.http
+        .put(`http://localhost:3000/order/${orderId}`, {})
+        .subscribe(
+          (data) => {
+            if (data) {
+              resolve(data);
+            }
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+    });
+  }
 }
