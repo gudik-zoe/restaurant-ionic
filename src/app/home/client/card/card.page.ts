@@ -46,7 +46,7 @@ export class CardPage implements OnInit, OnDestroy {
       console.log(this.card.total);
       this.total = this.card.total;
     } catch (err) {
-      this.errorHandler.showError(err, 'error', 'home/card');
+      this.errorHandler.showError(err, 'error', 'home/client/card');
     }
   }
 

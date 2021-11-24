@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/home/client/order/order.service';
 import openSocket from 'socket.io-client';
 import { ModalController } from '@ionic/angular';
-import { OrderModalComponent } from 'src/app/home/client/order/order-modal/order-modal.component';
+import { OrderModalComponent } from './order-modal/order-modal.component';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.page.html',
@@ -37,13 +37,22 @@ export class OrdersPage implements OnInit {
       })
       .then((modalEL) => {
         modalEL.present();
-        return modalEL.onDidDismiss();
-      });
+        return modalEL.onDidDismiss()
+      }).then((result: any) => {
+        if (result.role === 'confirm' && result.data.status === 'Preparing') {
+          console.log("should be the prepare " + result.data)
+          // this.setToPreparing(result.data.order.id);
+        }else if (result.role === 'confirm' && result.data.status === 'Done'){
+          console.log("should be the done " + result.data)
+        }else{
+          console.log("other thing")
+        }
+      })
+      
   }
 
   async setToPreparing(orderId: any) {
     const editedORder = await this.orderService.editOrder(orderId);
-    console.log(editedORder);
     //to be continued
   }
   ngOnInit() {

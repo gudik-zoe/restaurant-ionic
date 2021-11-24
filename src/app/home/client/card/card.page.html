@@ -1,6 +1,6 @@
 <app-header [title]="'card'" [defaultHref]="'home/card'" [back]="false">
 </app-header>
-<ion-content *ngIf="card" color="secondary">
+<ion-content *ngIf="card" color="light">
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -38,7 +38,7 @@
 
 
 </ion-content>
-<ion-content *ngIf="!card">
+<ion-content *ngIf="!card" color="light">
   <div class="center">
     <ion-label>please sign in to be able to see your card</ion-label>
   </div>

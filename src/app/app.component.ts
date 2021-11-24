@@ -13,6 +13,6 @@ export class AppComponent {
   logOut() {
     this.authService.userSignedIn.next(false);
     localStorage.removeItem('token');
-    this.route.navigate(['home/login']);
+    this.route.navigate(['home/client/login']);
   }
 }

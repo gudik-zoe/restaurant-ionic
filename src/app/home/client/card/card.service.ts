@@ -9,7 +9,6 @@ import { Card } from 'src/app/models/card';
 import { CardItem } from 'src/app/models/cardItem';
 import { ItemsService } from 'src/app/shared/item/items.service';
 import { environment } from 'src/environments/environment';
-import { AuthService } from '../login/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +16,6 @@ import { AuthService } from '../login/auth.service';
 export class CardService {
   constructor(
     private http: HttpClient,
-    private authService: AuthService,
     private itemsService: ItemsService
   ) {}
   rootUrl: string = environment.rootUrl;
