@@ -64,10 +64,10 @@ export class OrderService {
     });
   }
 
-  public editOrder(orderId: number) {
+  public editOrder(orderId: number , status:string) {
     return new Promise<any>((resolve, reject) => {
       return this.http
-        .put(`http://localhost:3000/order/${orderId}`, {})
+        .put(`http://localhost:3000/order/${orderId}/${status}`, {})
         .subscribe(
           (data) => {
             if (data) {

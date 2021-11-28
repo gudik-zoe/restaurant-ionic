@@ -58,7 +58,7 @@ export class SignInComponent implements OnInit {
                   this.router.navigate(['/home/client/menu']);
                 } else {
                   loadingEl.dismiss();
-                  this.router.navigate(['/home/admin/management']);
+                  this.router.navigate(['/home/admin/orders']);
                   console.log('here');
                 }
               }

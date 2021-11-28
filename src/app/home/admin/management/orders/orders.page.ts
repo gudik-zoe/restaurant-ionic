@@ -20,7 +20,6 @@ export class OrdersPage implements OnInit {
 
   async getOrders() {
     this.result = await this.orderService.getAllOrders();
-    console.log(this.result);
     const socket = openSocket('http://localhost:3000/');
     socket.on('addOrder', (data: any) => {
       if (data.action === 'create') {
@@ -39,11 +38,10 @@ export class OrdersPage implements OnInit {
         modalEL.present();
         return modalEL.onDidDismiss()
       }).then((result: any) => {
-        if (result.role === 'confirm' && result.data.status === 'Preparing') {
-          console.log("should be the prepare " + result.data)
-          // this.setToPreparing(result.data.order.id);
+        if (result.role === 'confirm' && result.data.status === 'Preparing') {      
+         this.updateOrderStatus(result.data.order._id , result.data.status)
         }else if (result.role === 'confirm' && result.data.status === 'Done'){
-          console.log("should be the done " + result.data)
+          this.updateOrderStatus(result.data.order._id , result.data.status)
         }else{
           console.log("other thing")
         }
@@ -51,9 +49,12 @@ export class OrdersPage implements OnInit {
       
   }
 
-  async setToPreparing(orderId: any) {
-    const editedORder = await this.orderService.editOrder(orderId);
-    //to be continued
+  async updateOrderStatus(orderId: any , status:string) {
+    const editedORder = await this.orderService.editOrder(orderId , status);
+    if(editedORder){
+      let theOrder = this.result.orders.find(order => order._id === editedORder._id)
+      theOrder.status = editedORder.status;
+    }
   }
   ngOnInit() {
     this.getOrders();

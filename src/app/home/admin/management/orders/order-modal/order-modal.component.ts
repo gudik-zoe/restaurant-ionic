@@ -34,9 +34,6 @@ export class OrderModalComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    if (this.order) {
-      console.log(this.order);
-    }
-  }
+  ngOnInit() {}
+  
 }
