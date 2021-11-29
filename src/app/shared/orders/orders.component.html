@@ -1,0 +1,14 @@
+<ion-content color="secondary">
+  <ion-grid>
+    <ion-row *ngFor="let order of myOrders">
+      <ion-col>
+        <ion-item color="tertiary" lines="none" style="border-radius: 8px;">
+          <ion-label color="dark">
+            Order N# {{order._id | slice:0:4}} - {{order.status}}
+          </ion-label>
+          <ion-button color="secondary" (click)="openModal(order)" slot="end">details</ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

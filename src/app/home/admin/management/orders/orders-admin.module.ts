@@ -4,20 +4,21 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { OrderPageRoutingModule } from './order-routing.module';
+import { OrdersPageRoutingModule } from './orders-admin-routing.module';
 
-import { OrderPage } from './order.page';
+import { OrdersAdminPage } from './orders-admin.page';
+
 import { SharedComponentsModule } from 'src/app/shared/shared-components.module';
-import { OrderModalClientComponent } from './order-modal-client/order-modal-client.component';
+import { OrderModalAdminComponent } from './order-modal-admin/order-modal-admin.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OrderPageRoutingModule,
+    OrdersPageRoutingModule,
     SharedComponentsModule,
   ],
-  declarations: [OrderPage, OrderModalClientComponent],
+  declarations: [OrdersAdminPage, OrderModalAdminComponent],
 })
-export class OrderPageModule {}
+export class OrdersPageModule {}

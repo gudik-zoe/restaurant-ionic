@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/member-ordering */
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Order } from 'src/app/models/order';
 
 @Component({
   selector: 'app-order-modal',
@@ -7,33 +9,11 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./order-modal.component.scss'],
 })
 export class OrderModalComponent implements OnInit {
-  @Input() order: any;
   constructor(private modalCtrl: ModalController) {}
+  @Input() order: Order;
 
   onClose() {
     this.modalCtrl.dismiss();
   }
-
-  setOrderStatusOnPreparing(){
-    this.modalCtrl.dismiss(
-      {
-        order: this.order,
-        status: "Preparing",
-      },
-      'confirm'
-    );
-  }
-
-  setOrderStatusOnDone(){
-    this.modalCtrl.dismiss(
-      {
-        order: this.order,
-        status: "Done",
-      },
-      'confirm'
-    );
-  }
-
   ngOnInit() {}
-  
 }

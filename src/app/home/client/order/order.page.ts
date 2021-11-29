@@ -8,9 +8,9 @@ import { ActionSheetController, ModalController } from '@ionic/angular';
 import { Order } from 'src/app/models/order';
 import { ErrorHandlerService } from 'src/app/utility/error-handler.service';
 import { AuthService } from '../login/auth.service';
-import { OrderModalComponent } from './order-modal/order-modal.component';
-import { OrderService } from './order.service';
 import openSocket from 'socket.io-client';
+import { OrderService } from 'src/app/shared/orders/order.service';
+import { OrderModalClientComponent } from './order-modal-client/order-modal-client.component';
 @Component({
   selector: 'app-order',
   templateUrl: './order.page.html',
@@ -49,7 +49,7 @@ export class OrderPage implements OnInit {
   openModal(order: Order) {
     this.modalCtrl
       .create({
-        component: OrderModalComponent,
+        component: OrderModalClientComponent,
         componentProps: { order: order },
       })
       .then((modalEL) => {

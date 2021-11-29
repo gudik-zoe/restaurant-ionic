@@ -12,9 +12,9 @@ import { Button } from 'selenium-webdriver';
 import { Card } from 'src/app/models/card';
 import { CardItem } from 'src/app/models/cardItem';
 import { Order } from 'src/app/models/order';
+import { OrderService } from 'src/app/shared/orders/order.service';
 import { ErrorHandlerService } from 'src/app/utility/error-handler.service';
 import { AuthService } from '../login/auth.service';
-import { OrderService } from '../order/order.service';
 import { CardService } from './card.service';
 
 @Component({

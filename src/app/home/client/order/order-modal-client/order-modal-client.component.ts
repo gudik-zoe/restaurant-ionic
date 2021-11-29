@@ -4,10 +4,10 @@ import { Order } from 'src/app/models/order';
 
 @Component({
   selector: 'app-order-modal',
-  templateUrl: './order-modal.component.html',
-  styleUrls: ['./order-modal.component.scss'],
+  templateUrl: './order-modal-client.component.html',
+  styleUrls: ['./order-modal-client.component.scss'],
 })
-export class OrderModalComponent implements OnInit {
+export class OrderModalClientComponent implements OnInit {
   @Input() order: Order;
   constructor(private modalCtrl: ModalController) {}
 

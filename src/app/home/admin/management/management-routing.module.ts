@@ -11,7 +11,9 @@ const routes: Routes = [
       {
         path: 'orders',
         loadChildren: () =>
-          import('./orders/orders.module').then((m) => m.OrdersPageModule),
+          import('./orders/orders-admin.module').then(
+            (m) => m.OrdersPageModule
+          ),
       },
       {
         path: 'menu',
