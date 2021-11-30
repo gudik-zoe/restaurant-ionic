@@ -23,36 +23,40 @@ export class OrdersComponent implements OnInit {
     private authService: AuthService
   ) {}
   @Input() myOrders: Order[];
+  @Input() isAdmin: boolean;
   order: Order;
 
-  // public async getMyOrders() {
-  //   try {
-  //     this.myOrders = await this.orderService.getOrders();
-  //     const socket = openSocket('http://localhost:3000/');
-  //     socket.on('editOrder', (data: any) => {
-  //       if (data.action === 'edit') {
-  //         for (let order of this.myOrders) {
-  //           if (order._id === data.order._id) {
-  //             order.status = data.order.status;
-  //           }
-  //         }
-  //       }
-  //     });
-  //   } catch (err) {
-  //     this.errorHandler.showError(err);
-  //   }
-  // }
 
   openModal(order: Order) {
     this.modalCtrl
       .create({
         component: OrderModalComponent,
-        componentProps: { order: order },
+        componentProps: { order: order , isAdmin :this.isAdmin },
       })
       .then((modalEL) => {
         modalEL.present();
         return modalEL.onDidDismiss();
+      })
+      .then((result: any) => {
+        if (result.role === 'confirm' && result.data.status === 'Preparing') {
+          this.updateOrderStatus(result.data.order._id, result.data.status);
+        } else if (result.role === 'confirm' && result.data.status === 'Done') {
+          this.updateOrderStatus(result.data.order._id, result.data.status);
+        } else {
+          console.log('other thing');
+        }
       });
+  }
+
+
+  async updateOrderStatus(orderId: any, status: string) {
+    const editedORder = await this.orderService.editOrder(orderId, status);
+    if (editedORder) {
+      let theOrder = this.myOrders.find(
+        (order) => order._id === editedORder._id
+      );
+      theOrder.status = editedORder.status;
+    }
   }
 
   public async addOrder() {

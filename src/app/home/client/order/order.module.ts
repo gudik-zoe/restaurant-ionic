@@ -8,7 +8,7 @@ import { OrderPageRoutingModule } from './order-routing.module';
 
 import { OrderPage } from './order.page';
 import { SharedComponentsModule } from 'src/app/shared/shared-components.module';
-import { OrderModalClientComponent } from './order-modal-client/order-modal-client.component';
+
 
 @NgModule({
   imports: [
@@ -18,6 +18,6 @@ import { OrderModalClientComponent } from './order-modal-client/order-modal-clie
     OrderPageRoutingModule,
     SharedComponentsModule,
   ],
-  declarations: [OrderPage, OrderModalClientComponent],
+  declarations: [OrderPage],
 })
 export class OrderPageModule {}

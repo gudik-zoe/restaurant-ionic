@@ -3,7 +3,7 @@
   <!-- <app-orders [myOrders]="myOrders"></app-orders>
 </ion-content> -->
 <ion-content color="secondary" *ngIf="result.orders">
-  <app-orders [myOrders]="result.orders"></app-orders>
+  <app-orders [myOrders]="result.orders" [isAdmin]="true" ></app-orders>
   <!-- <ion-grid *ngIf="result">
     <ion-row *ngFor="let order of result.orders">
       <ion-col color="">

@@ -5,8 +5,8 @@
 import { Component, OnInit } from '@angular/core';
 import openSocket from 'socket.io-client';
 import { ModalController } from '@ionic/angular';
-import { OrderModalAdminComponent } from './order-modal-admin/order-modal-admin.component';
 import { OrderService } from 'src/app/shared/orders/order.service';
+import { OrderModalComponent } from 'src/app/shared/order-modal/order-modal.component';
 @Component({
   selector: 'app-orders-admin',
   templateUrl: './orders-admin.page.html',
@@ -33,8 +33,8 @@ export class OrdersAdminPage implements OnInit {
   openModal(order) {
     this.modalCtrl
       .create({
-        component: OrderModalAdminComponent,
-        componentProps: { order: order },
+        component: OrderModalComponent,
+        componentProps: { order: order , isAdmin:true },
       })
       .then((modalEL) => {
         modalEL.present();

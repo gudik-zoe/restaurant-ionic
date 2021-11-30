@@ -9,7 +9,6 @@ import { OrdersPageRoutingModule } from './orders-admin-routing.module';
 import { OrdersAdminPage } from './orders-admin.page';
 
 import { SharedComponentsModule } from 'src/app/shared/shared-components.module';
-import { OrderModalAdminComponent } from './order-modal-admin/order-modal-admin.component';
 
 @NgModule({
   imports: [
@@ -19,6 +18,6 @@ import { OrderModalAdminComponent } from './order-modal-admin/order-modal-admin.
     OrdersPageRoutingModule,
     SharedComponentsModule,
   ],
-  declarations: [OrdersAdminPage, OrderModalAdminComponent],
+  declarations: [OrdersAdminPage],
 })
 export class OrdersPageModule {}

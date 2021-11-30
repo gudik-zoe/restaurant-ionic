@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="order">
   <ion-grid style="margin-top: 15px;">
     <div class="table-header">
       <ion-row>
@@ -60,4 +60,11 @@
       </ion-row>
     </div>
   </ion-grid>
+
+    <ion-grid *ngIf="isAdmin">
+    <ion-col>
+      <ion-button (click)="setOrderStatusOnPreparing()">preparing</ion-button>
+      <ion-button (click)="setOrderStatusOnDone()">done</ion-button>
+    </ion-col>
+  </ion-grid> 
 </ion-content>
