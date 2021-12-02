@@ -4,14 +4,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  ActionSheetController,
   AlertController,
   ModalController,
   ToastController,
 } from '@ionic/angular';
 import { CardService } from 'src/app/home/client/card/card.service';
 import { Item } from 'src/app/models/item';
-import { ResultList } from 'src/app/models/resultList';
 import { ErrorHandlerService } from '../../utility/error-handler.service';
 import { ItemsService } from './items.service';
 import { SelectItemComponent } from './select-item/select-item.component';
@@ -53,6 +51,7 @@ export class ItemComponent implements OnInit {
             .subscribe(
               (data: any) => {
                 if (data) {
+                  console.log(itemData.data.quanity);
                   this.cardService.addToCardSubject.next({
                     quantity: itemData.data.quantity,
                     add: true,

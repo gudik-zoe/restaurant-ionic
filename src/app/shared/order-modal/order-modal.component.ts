@@ -3,7 +3,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Order } from 'src/app/models/order';
 
-
 @Component({
   selector: 'app-order-modal',
   templateUrl: './order-modal.component.html',
@@ -15,7 +14,6 @@ export class OrderModalComponent implements OnInit {
   @Input() order: Order;
   @Output() putOrderStatusOnPreparing = new EventEmitter();
   @Output() putOrderStatusOnDone = new EventEmitter();
-
 
   setOrderStatusOnPreparing() {
     this.modalCtrl.dismiss(
@@ -41,5 +39,6 @@ export class OrderModalComponent implements OnInit {
     this.modalCtrl.dismiss();
   }
   ngOnInit() {
+    console.log(this.order);
   }
 }

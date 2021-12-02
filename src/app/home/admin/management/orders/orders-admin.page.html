@@ -1,24 +1,5 @@
 <app-header [title]="'orders'" [defaultHref]="'home/menu'" [back]="false"></app-header>
-<!-- <ion-content color="secondary">
-  <!-- <app-orders [myOrders]="myOrders"></app-orders>
-</ion-content> -->
 <ion-content color="secondary" *ngIf="result.orders">
-  <app-orders [myOrders]="result.orders" [isAdmin]="true" ></app-orders>
-  <!-- <ion-grid *ngIf="result">
-    <ion-row *ngFor="let order of result.orders">
-      <ion-col color="">
-        <ion-item lines="none" style="border-radius: 8px;" color="secondary">
-          <ion-label slot="start">
-            Order N# {{order._id | slice:0:3}}
-          </ion-label>
-          <ion-label slot="start">
-            status:{{order.status}}
-          </ion-label>
-          <!-- <ion-button color="danger" (click)="setToPreparing(order._id)">prepare</ion-button>
-          <ion-button (click)="openModal(order)">details</ion-button>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid> -->
+  <app-orders [myOrders]="result.orders" [isAdmin]="true"></app-orders>
   <p *ngIf="!result.orders">no orders</p>
 </ion-content>

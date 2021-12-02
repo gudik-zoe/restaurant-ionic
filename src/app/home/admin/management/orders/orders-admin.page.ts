@@ -7,6 +7,7 @@ import openSocket from 'socket.io-client';
 import { ModalController } from '@ionic/angular';
 import { OrderService } from 'src/app/shared/orders/order.service';
 import { OrderModalComponent } from 'src/app/shared/order-modal/order-modal.component';
+import { ItemsService } from 'src/app/shared/item/items.service';
 @Component({
   selector: 'app-orders-admin',
   templateUrl: './orders-admin.page.html',
@@ -15,7 +16,8 @@ import { OrderModalComponent } from 'src/app/shared/order-modal/order-modal.comp
 export class OrdersAdminPage implements OnInit {
   constructor(
     private orderService: OrderService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private itemService: ItemsService
   ) {}
 
   result: any = [];
@@ -23,8 +25,12 @@ export class OrdersAdminPage implements OnInit {
   async getOrders() {
     this.result = await this.orderService.getAllOrders();
     const socket = openSocket('http://localhost:3000/');
-    socket.on('addOrder', (data: any) => {
-      if (data.action === 'create') {
+    socket.on('addOrder', async (data: any) => {
+      if (data.action === 'create' && data.order) {
+        console.log(data.order);
+        for (let item of data.order.items) {
+          item.itemData = await this.itemService.getItemById(item.itemId);
+        } // data.order.itemData = await this.itemService.getItemById(data.order.id);
         this.result.orders.push(data.order);
       }
     });
@@ -34,7 +40,7 @@ export class OrdersAdminPage implements OnInit {
     this.modalCtrl
       .create({
         component: OrderModalComponent,
-        componentProps: { order: order , isAdmin:true },
+        componentProps: { order: order, isAdmin: true },
       })
       .then((modalEL) => {
         modalEL.present();
@@ -60,6 +66,7 @@ export class OrdersAdminPage implements OnInit {
       theOrder.status = editedORder.status;
     }
   }
+
   ngOnInit() {
     this.getOrders();
   }

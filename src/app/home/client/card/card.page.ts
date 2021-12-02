@@ -118,7 +118,7 @@ export class CardPage implements OnInit, OnDestroy {
           if (this.order) {
             loadingEl.dismiss();
             this.card = null;
-            this.route.navigate(['home/order']);
+            this.route.navigate(['home/client/order']);
           }
         } catch (err) {
           loadingEl.dismiss();
@@ -169,23 +169,16 @@ export class CardPage implements OnInit, OnDestroy {
         });
       }
     } catch (err) {
-      this.errorHandler.showError(err, 'home/card');
+      this.errorHandler.showError(err, 'home/client/card');
     }
   }
 
-  ngOnInit() {
-    this.passedFromNgOnInit = true;
+  ngOnInit() {}
+  ionViewWillEnter() {
     if (this.authService.isAuthenticated()) {
       this.getMyCard();
     } else {
       this.card = null;
     }
-  }
-  ionViewWillEnter() {
-    // if (this.authService.isAuthenticated() && !this.passedFromNgOnInit) {
-    this.getMyCard();
-    // } else {
-    //   this.card = null;
-    // }
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable prefer-const */
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -80,6 +81,7 @@ export class HomePage implements OnInit, OnDestroy {
     this.addToCardSubjectSubscription =
       this.cardService.addToCardSubject.subscribe((data: AddItemSubject) => {
         if (data.add) {
+          console.log('data add ' + data.quantity);
           this.cardLength = this.cardLength + data.quantity;
         } else {
           this.cardLength -= data.quantity;
@@ -95,10 +97,10 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('in ng on init');
-    if (this.authService.isAuthenticated()) {
-      this.userIsAuthenticated = true;
-      this.ngOnInitMethods();
-    }
+    //   console.log('in ng on init');
+    //   if (this.authService.isAuthenticated()) {
+    //     this.userIsAuthenticated = true;
+    //     this.ngOnInitMethods();
+    //   }
   }
 }
