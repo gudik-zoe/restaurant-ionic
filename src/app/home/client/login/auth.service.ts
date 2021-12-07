@@ -6,7 +6,8 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
+import jwt_decode from 'jwt-decode';
 import { ConfirmAuth } from 'src/app/models/confirmauth';
 import { SignUp } from 'src/app/models/signup';
 import { environment } from 'src/environments/environment';
@@ -65,5 +66,9 @@ export class AuthService {
 
   public isAuthenticated() {
     return !!localStorage.getItem('token');
+  }
+  getUserRole() {
+    const decoded: any = jwt_decode(localStorage.getItem('token'));
+    return decoded.role;
   }
 }

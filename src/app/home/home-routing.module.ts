@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from './admin/admin.guard';
 import { HomePage } from './home.page';
 
 const routes: Routes = [
@@ -30,22 +31,23 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: 'order',
-    loadChildren: () =>
-      import('./client/order/order.module').then((m) => m.OrderPageModule),
-  },
-  {
-    path: 'blue',
-    loadChildren: () =>
-      import('./client/blue/blue.module').then((m) => m.BluePageModule),
-  },
+  // {
+  //   path: 'order',
+  //   loadChildren: () =>
+  //     import('./client/order/order.module').then((m) => m.OrderPageModule),
+  // },
+  // {
+  //   path: 'blue',
+  //   loadChildren: () =>
+  //     import('./client/blue/blue.module').then((m) => m.BluePageModule),
+  // },
   {
     path: 'management',
     loadChildren: () =>
       import('./admin/management/management.module').then(
         (m) => m.ManagementPageModule
       ),
+    canActivate: [AdminGuard],
   },
 ];
 

@@ -29,8 +29,7 @@ export class ItemComponent implements OnInit {
     private cardService: CardService,
     private modalController: ModalController
   ) {}
-  @Input() category: string;
-  items: Item[];
+  @Input() items: Item[];
 
   public addToCart(item: Item) {
     this.modalController
@@ -100,15 +99,15 @@ export class ItemComponent implements OnInit {
       });
   }
 
-  async getItems() {
-    try {
-      this.items = await this.itemsService.getItemsByCategory(this.category);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async getItems() {
+  //   try {
+  //     this.items = await this.itemsService.getItemsByCategory(this.category);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   ngOnInit() {
-    this.getItems();
+    console.log(this.items);
   }
 }

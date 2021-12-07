@@ -6,6 +6,8 @@ import { HomePage } from './home.page';
 import { SuperTabsModule } from '@ionic-super-tabs/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 import { SharedComponentsModule } from '../shared/shared-components.module';
+import { AdminGuard } from './admin/admin.guard';
+import { ClientGuard } from './client.guard';
 
 @NgModule({
   imports: [
@@ -17,5 +19,6 @@ import { SharedComponentsModule } from '../shared/shared-components.module';
     SuperTabsModule.forRoot(),
   ],
   declarations: [HomePage],
+  providers: [AdminGuard, ClientGuard],
 })
 export class HomePageModule {}

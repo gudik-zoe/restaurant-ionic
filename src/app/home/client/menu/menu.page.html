@@ -4,41 +4,38 @@
   <super-tabs>
     <super-tabs-toolbar slot="top" color="primary">
       <super-tab-button>
-        <!-- <ion-icon name="business" color="light" size="small"></ion-icon> -->
         <ion-label>Appetizers</ion-label>
       </super-tab-button>
       <super-tab-button>
-        <!-- <ion-icon name="fast-food-outline" color="light" size="small"></ion-icon> -->
         <ion-label>Combos</ion-label>
       </super-tab-button>
       <super-tab-button>
-        <!-- <ion-icon name="beer-outline" color="light" size="small"></ion-icon> -->
         <ion-label>Drinks</ion-label>
       </super-tab-button>
       <super-tab-button>
-        <!-- <ion-icon name="exit" color="light" size="small"></ion-icon> -->
         <ion-label>Desserts</ion-label>
       </super-tab-button>
     </super-tabs-toolbar>
     <super-tabs-container>
       <super-tab>
         <ion-content>
-          <app-item [category]="'Appetizer'"></app-item>
+          <app-item [items]="appetizers"></app-item>
         </ion-content>
       </super-tab>
       <super-tab>
         <ion-content>
-          <app-item [category]="'Menu'"></app-item>
+          <app-item [items]="combos"></app-item>
         </ion-content>
       </super-tab>
       <super-tab>
         <ion-content>
-          <app-item [category]="'Drink'"></app-item>
+          < <app-item [items]="drinks">
+            </app-item>
         </ion-content>
       </super-tab>
       <super-tab>
         <ion-content>
-          <app-item [category]="'Dessert'"></app-item>
+          <app-item [items]="desserts"></app-item>
         </ion-content>
       </super-tab>
     </super-tabs-container>

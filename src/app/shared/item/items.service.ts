@@ -60,4 +60,19 @@ export class ItemsService {
       }
     });
   }
+
+  async getAllItems() {
+    return new Promise((resolve, reject) => {
+      return this.http.get(this.rootUrl + 'item/all').subscribe(
+        (data) => {
+          if (data) {
+            resolve(data);
+          }
+        },
+        (err) => {
+          reject(err);
+        }
+      );
+    });
+  }
 }
