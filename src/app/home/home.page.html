@@ -1,5 +1,5 @@
-<!-- <app-header [title]="'home'" [defaultHref]="'home'" [back]="false"></app-header> -->
 <ion-content>
+  <app-header [title]="'home'" [defaultHref]="'home'" [back]="false"></app-header>
   <ion-tabs>
     <ion-tab-bar slot="bottom" class="bar" color="primary">
       <ion-tab-button tab="menu" style="border: none;">
@@ -29,7 +29,16 @@
         <ion-icon name="folder-outline"></ion-icon>
         <ion-label>Orders</ion-label>
       </ion-tab-button>
+
+
+      <ion-tab-button tab="customer-service-client">
+        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+        <ion-label>help</ion-label>
+      </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
+
+
+
 
 </ion-content>

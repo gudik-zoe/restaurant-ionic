@@ -49,6 +49,13 @@ const routes: Routes = [
       ),
     canActivate: [AdminGuard],
   },
+  {
+    path: 'customer-service-client',
+    loadChildren: () =>
+      import(
+        './client/customer-service-client/customer-service-client.module'
+      ).then((m) => m.CustomerServiceClientPageModule),
+  },
 ];
 
 @NgModule({

@@ -99,15 +99,5 @@ export class ItemComponent implements OnInit {
       });
   }
 
-  // async getItems() {
-  //   try {
-  //     this.items = await this.itemsService.getItemsByCategory(this.category);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
-  ngOnInit() {
-    console.log(this.items);
-  }
+  ngOnInit() {}
 }

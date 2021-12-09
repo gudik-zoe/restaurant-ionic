@@ -7,7 +7,7 @@ import { SuperTabsModule } from '@ionic-super-tabs/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 import { SharedComponentsModule } from '../shared/shared-components.module';
 import { AdminGuard } from './admin/admin.guard';
-import { ClientGuard } from './client.guard';
+import { ClientGuard } from './client/client.guard';
 
 @NgModule({
   imports: [

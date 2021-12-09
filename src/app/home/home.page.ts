@@ -53,6 +53,9 @@ export class HomePage implements OnInit, OnDestroy {
 
   ionViewDidEnter() {
     console.log('in view did enter init');
+    if (localStorage.getItem('token')) {
+      this.userIsAuthenticated = true;
+    }
     this.ngOnInitMethods();
   }
 
@@ -97,10 +100,9 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    //   console.log('in ng on init');
-    //   if (this.authService.isAuthenticated()) {
-    //     this.userIsAuthenticated = true;
-    //     this.ngOnInitMethods();
-    //   }
+    console.log(this.userIsAuthenticated);
+    if (localStorage.getItem('token')) {
+      this.userIsAuthenticated = true;
+    }
   }
 }

@@ -1,0 +1,12 @@
+<app-header [title]="'chat'" [defaultHref]="'home/card'" [back]="false"></app-header>
+<ion-content>
+  <div style="height: 80px; width: 100%; border:1px solid black" *ngFor="let message of messages">
+    <p>{{message}}</p>
+  </div>
+  <ion-grid>
+    <ion-col>
+      <ion-input placeholder="insert your message" [(ngModel)]="theMessage"></ion-input>
+      <ion-fab-button (click)="send()">send</ion-fab-button>
+    </ion-col>
+  </ion-grid>
+</ion-content>

@@ -34,6 +34,10 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'customer-service-admin',
+    loadChildren: () => import('./customer-service-admin/customer-service-admin.module').then( m => m.CustomerServiceAdminPageModule)
+  },
 ];
 
 @NgModule({
