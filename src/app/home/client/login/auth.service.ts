@@ -67,8 +67,14 @@ export class AuthService {
   public isAuthenticated() {
     return !!localStorage.getItem('token');
   }
-  getUserRole() {
-    const decoded: any = jwt_decode(localStorage.getItem('token'));
-    return decoded.role;
+   getUserRole() {
+    return new Promise<string>((res , rej) => {
+      return this.http.get(this.rootUrl + 'auth/role').subscribe((role:string)=>{
+          if(role){
+            console.log("role in service " + role)
+            res(role)
+          }
+      }, err => rej(err))
+    })
   }
 }
