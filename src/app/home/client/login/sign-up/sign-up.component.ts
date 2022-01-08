@@ -86,7 +86,7 @@ export class SignUpComponent implements OnInit {
                   localStorage.setItem('token', this.token);
                   this.loadingCtrl.dismiss();
                   this.authService.userSignedIn.next(true);
-                  this.router.navigate(['/home/menu']);
+                  this.router.navigate(['/home/client/menu']);
                   // this.confirmUserByTemporaryPassword(result.data);
                 }
               });

@@ -1,21 +1,17 @@
-<ion-header *ngIf="title">
+<ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
+      <ion-back-button *ngIf="back && defaultHref " [defaultHref]="defaultHref"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="title" style="margin-left: 35%;">{{title}}</ion-title>
+    <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
 
-    <ion-buttons>
-      <ion-label style="margin-left: 40%; font-size: large;" slot="center"> {{title}}</ion-label>
-    </ion-buttons>
-    <!-- <ion-buttons slot="">
-      <ion-title size="large">{{title}}</ion-title>
-    </ion-buttons> -->
     <ion-buttons slot="end" *ngIf="user">
       <ion-avatar style="padding: 10px;">
         <img src="https://cdn.pixabay.com/photo/2013/07/13/12/07/avatar-159236_640.png">
       </ion-avatar>
     </ion-buttons>
-
-
   </ion-toolbar>
 </ion-header>

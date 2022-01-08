@@ -1,6 +1,8 @@
-<app-header [title]="'help-center-admin'" [defaultHref]="'home/menu'" [back]="false"></app-header>
+<app-header [title]="'help-center-admin'" [defaultHref]="'home/menu'" [back]="false">
+</app-header>
 
-<ion-content color="secondary" >
+
+<ion-content color="secondary">
   <ion-grid>
     <ion-row *ngFor="let room of rooms">
       <ion-col>
@@ -8,7 +10,7 @@
           <ion-label color="dark">
             room N# {{room._id}}
           </ion-label>
-          <ion-button color="secondary"  slot="end">enter room</ion-button>
+          <ion-button color="secondary" slot="end">enter room</ion-button>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -16,5 +18,5 @@
   <div *ngIf="!rooms">
     no rooms
   </div>
-   <!-- <app-chat [messages]="messages" (sendMessage)="sendInFather($event)"></app-chat>   -->
+  <!-- <app-chat [messages]="messages" (sendMessage)="sendInFather($event)"></app-chat>   -->
 </ion-content>
