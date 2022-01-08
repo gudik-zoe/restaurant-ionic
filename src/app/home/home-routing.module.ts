@@ -28,7 +28,14 @@ const routes: Routes = [
         path: 'order',
         loadChildren: () =>
           import('./client/order/order.module').then((m) => m.OrderPageModule),
-      },
+        },
+        {
+          path: 'customer-service-client',
+          loadChildren: () =>
+            import(
+              './client/customer-service-client/customer-service-client.module'
+            ).then((m) => m.CustomerServiceClientPageModule),
+        },
     ],
   },
   // {
@@ -48,13 +55,6 @@ const routes: Routes = [
         (m) => m.ManagementPageModule
       ),
     canActivate: [AdminGuard],
-  },
-  {
-    path: 'customer-service-client',
-    loadChildren: () =>
-      import(
-        './client/customer-service-client/customer-service-client.module'
-      ).then((m) => m.CustomerServiceClientPageModule),
   },
 ];
 

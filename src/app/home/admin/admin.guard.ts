@@ -19,13 +19,10 @@ export class AdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) {
-    console.log("passing here")
       const role = await this.authService.getUserRole();
     if ( role === Role.admin.toLocaleLowerCase()) {
-      console.log("it's an admin")
       return true;
     } else {
-      console.log("it's not an  admin")
       this.router.navigate(['home/client/menu']);
     }
   }

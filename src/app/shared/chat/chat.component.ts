@@ -13,17 +13,18 @@ export class ChatComponent implements OnInit {
   constructor() {}
 
   send() {
-    console.log('in child');
+    console.log('the message' + this.theMessage);
     this.sendMessage.emit(this.theMessage);
     this.theMessage = null;
   }
 
   getClasses(messageType) {
     return {
-      incoming: messageType === 'incoming',
-      outgoing: messageType === 'outgoing',
+      client: messageType === 'client',
+      admin: messageType === 'admin',
     };
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }

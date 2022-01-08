@@ -1,2 +1,4 @@
 <app-header [title]="'chat'" [defaultHref]="'home/client/menu'" [back]="true"></app-header>
-<app-chat [messages]="messages" (sendMessage)="sendInFather($event)"></app-chat>
+<ion-content  color="light">
+<app-chat [messages]="userMessages" (sendMessage)="sendInFather($event)"></app-chat>
+</ion-content>

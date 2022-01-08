@@ -52,13 +52,15 @@ export class SignInComponent implements OnInit {
             (loginResponse: LoginResponse) => {
               if (loginResponse) {
                 localStorage.setItem('token', loginResponse.token);
+                console.log(loginResponse.role.toUpperCase())
                 if (loginResponse.role.toUpperCase() === Role.user) {
                   this.authService.userSignedIn.next(true);
                   loadingEl.dismiss();
                   this.router.navigate(['/home/client/menu']);
                 } else {
                   loadingEl.dismiss();
-                  this.router.navigate(['/home/admin/order']);
+                  console.log("here")
+                  this.router.navigate(['/home/admin/orders']);
                 }
               }
             },

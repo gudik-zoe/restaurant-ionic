@@ -32,12 +32,13 @@ const routes: Routes = [
           ),
         canActivate: [AdminGuard],
       },
+      {
+        path: 'customer-service-admin',
+        loadChildren: () => import('./customer-service-admin/customer-service-admin.module').then( m => m.CustomerServiceAdminPageModule)
+      },
     ],
   },
-  {
-    path: 'customer-service-admin',
-    loadChildren: () => import('./customer-service-admin/customer-service-admin.module').then( m => m.CustomerServiceAdminPageModule)
-  },
+  
 ];
 
 @NgModule({

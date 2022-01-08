@@ -27,7 +27,7 @@
           background: white;
         }
       }
-      .message.incoming {
+      .message.client {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -38,7 +38,7 @@
           background: #b9c0e9;
         }
       }
-      .message.outgoing {
+      .message.admin {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -97,7 +97,7 @@ ion-icon {
       cursor: pointer;
       background: inherit;
       ion-icon {
-        font-size: 3rem;
+        font-size: 1.8rem;
       }
     }
   }

@@ -13,3 +13,5 @@ export class ManagementPage implements OnInit {
   }
 
 }
+
+ 

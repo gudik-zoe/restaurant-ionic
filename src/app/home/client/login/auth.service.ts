@@ -11,14 +11,16 @@ import jwt_decode from 'jwt-decode';
 import { ConfirmAuth } from 'src/app/models/confirmauth';
 import { SignUp } from 'src/app/models/signup';
 import { environment } from 'src/environments/environment';
+import { UserData } from 'src/app/models/userData';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   // public isAuthenticated = new BehaviorSubject<boolean>(null);
   rootUrl: string = environment.rootUrl;
+  userData: UserData
   userSignedIn = new Subject<boolean>();
 
   public login(email: string, password: string) {
@@ -67,14 +69,37 @@ export class AuthService {
   public isAuthenticated() {
     return !!localStorage.getItem('token');
   }
-   getUserRole() {
-    return new Promise<string>((res , rej) => {
-      return this.http.get(this.rootUrl + 'auth/role').subscribe((role:string)=>{
-          if(role){
-            console.log("role in service " + role)
-            res(role)
+
+
+
+  getUserRole() {
+    if (!this.userData || !!this.userData.role) {
+      return new Promise<string>((res, rej) => {
+        return this.http.get(this.rootUrl + 'auth/userData').subscribe((userData: UserData) => {
+          if (userData) {
+            this.userData = userData
+            res(this.userData.role)
           }
-      }, err => rej(err))
-    })
+        }, err => rej(err))
+      })
+    } else {
+      return this.userData.role
+    }
+  }
+
+  getUserId() {
+    if (!this.userData ||
+      !!this.userData.userId) {
+      return new Promise<string>((res, rej) => {
+        return this.http.get(this.rootUrl + 'auth/userData').subscribe((userData: UserData) => {
+          if (userData) {
+            this.userData = userData
+            res(this.userData.userId)
+          }
+        }, err => rej(err))
+      })
+    } else {
+      return this.userData.userId
+    }
   }
 }
