@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CustomerServiceAdminPageRoutingModule } from './customer-service-admin-routing.module';
+import { RoomPageRoutingModule } from './room-routing.module';
 
-import { CustomerServiceAdminPage } from './customer-service-admin.page';
+import { RoomPage } from './room.page';
 import { SharedComponentsModule } from 'src/app/shared/shared-components.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { SharedComponentsModule } from 'src/app/shared/shared-components.module'
     CommonModule,
     FormsModule,
     IonicModule,
-    CustomerServiceAdminPageRoutingModule,
-    SharedComponentsModule,
+    RoomPageRoutingModule,
+    SharedComponentsModule
   ],
-  declarations: [CustomerServiceAdminPage],
+  declarations: [RoomPage]
 })
-export class CustomerServiceAdminPageModule { }
+export class RoomPageModule { }

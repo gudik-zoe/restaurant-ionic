@@ -1,0 +1,9 @@
+<app-header [title]="'room'" [defaultHref]="'home/admin/customer-service-admin'" [back]="true">
+</app-header>
+
+<ion-content color="light" *ngIf="room">
+  <div>
+    {{room.userId}}
+  </div>
+  <app-chat [messages]="room.messages" (sendMessage)="sendInFather($event)"></app-chat>
+</ion-content>

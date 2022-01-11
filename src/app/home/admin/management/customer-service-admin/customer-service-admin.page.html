@@ -10,7 +10,8 @@
           <ion-label color="dark">
             room N# {{room._id}}
           </ion-label>
-          <ion-button color="secondary" slot="end">enter room</ion-button>
+          <ion-button color="secondary" slot="end" [routerLink]="['/home/admin/customer-service-admin/' , room._id]">
+            enter room</ion-button>
         </ion-item>
       </ion-col>
     </ion-row>

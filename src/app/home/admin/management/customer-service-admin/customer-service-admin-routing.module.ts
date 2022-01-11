@@ -7,11 +7,16 @@ const routes: Routes = [
   {
     path: '',
     component: CustomerServiceAdminPage
+  },
+  {
+    path: ':roomId',
+    loadChildren: () => import('./room/room.module').then(m => m.RoomPageModule)
   }
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CustomerServiceAdminPageRoutingModule {}
+export class CustomerServiceAdminPageRoutingModule { }

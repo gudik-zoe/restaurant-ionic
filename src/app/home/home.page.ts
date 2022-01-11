@@ -24,7 +24,7 @@ export class HomePage implements OnInit, OnDestroy {
     private cardService: CardService,
     public authService: AuthService,
     private errorHandler: ErrorHandlerService
-  ) {}
+  ) { }
   ngOnDestroy() {
     this.userSignedIn.unsubscribe();
     this.addToCardSubjectSubscription.unsubscribe();
@@ -52,7 +52,6 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ionViewDidEnter() {
-    console.log('in view did enter init');
     if (localStorage.getItem('token')) {
       this.userIsAuthenticated = true;
     }
@@ -66,7 +65,6 @@ export class HomePage implements OnInit, OnDestroy {
           this.userIsAuthenticated = true;
           this.cardService.getMyCardItemsNumber().subscribe(
             (cardItemsNumber: number) => {
-              console.log(cardItemsNumber);
               this.cardLength = cardItemsNumber;
             },
             (error) => {
@@ -84,7 +82,6 @@ export class HomePage implements OnInit, OnDestroy {
     this.addToCardSubjectSubscription =
       this.cardService.addToCardSubject.subscribe((data: AddItemSubject) => {
         if (data.add) {
-          console.log('data add ' + data.quantity);
           this.cardLength = this.cardLength + data.quantity;
         } else {
           this.cardLength -= data.quantity;
@@ -100,7 +97,6 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.userIsAuthenticated);
     if (localStorage.getItem('token')) {
       this.userIsAuthenticated = true;
     }

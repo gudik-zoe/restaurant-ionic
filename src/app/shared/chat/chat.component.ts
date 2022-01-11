@@ -8,9 +8,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ChatComponent implements OnInit {
   @Input() messages: String[] = [];
+  @Input() room: any
   @Output() sendMessage = new EventEmitter<string>();
   theMessage: string;
-  constructor() {}
+  constructor() { }
 
   send() {
     console.log('the message' + this.theMessage);

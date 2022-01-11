@@ -34,15 +34,16 @@ const routes: Routes = [
       },
       {
         path: 'customer-service-admin',
-        loadChildren: () => import('./customer-service-admin/customer-service-admin.module').then( m => m.CustomerServiceAdminPageModule)
+        loadChildren: () => import('./customer-service-admin/customer-service-admin.module').then(m => m.CustomerServiceAdminPageModule)
       },
     ],
+
   },
-  
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ManagementPageRoutingModule {}
+export class ManagementPageRoutingModule { }
